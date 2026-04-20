@@ -204,31 +204,156 @@ body {
 }
 
 /* ORDER */
-.order { text-align:center; padding:60px 20px; }
-
-.order-buttons {
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-    margin:20px 0;
+.order {
+    padding: 60px 15px;
+    padding-bottom: 10px;
+    background: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.order-card {
-    background:white;
-    padding:18px;
-    border-radius:20px;
-    font-weight:bold;
+/* ЗАГОЛОВОК */
+.order-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px;
 }
 
-.order-info { margin:20px 0; }
+.order-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    color: #3d2b1f;
+    margin: 0;
+}
 
-.btn {
-    background:#FFD54F;
-    padding:12px 25px;
-    border-radius:25px;
-    text-decoration:none;
-    color:black;
-    display:inline-block;
+.wave-line {
+    width: 35px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'%3E%3Cpath d='M0 10 Q25 0 50 10 T100 10' fill='none' stroke='%23d4af37' stroke-width='4'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* ТЕКСТОВЫЕ ПРОСЛОЙКИ */
+.order-step-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: #7a6a5e;
+    margin: 15px 0;
+}
+
+/* ГЛАВНЫЕ КНОПКИ (НА ВСЮ ШИРИНУ) */
+.order-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.order-card-btn {
+    text-decoration: none;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 22px 15px;
+    background: #FFFDE7;
+    border: 1px solid #f0e68c;
+    border-radius: 20px;
+    color: #8b7355;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    transition: 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card-icon {
+    font-size: 20px;
+}
+
+/* РАЗДЕЛИТЕЛЬ "ИЛИ" */
+.order-separator {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #d4af37;
+    margin: 10px 0;
+}
+
+/* МАЛЕНЬКИЕ КНОПКИ (ПО ДВЕ В РЯД) */
+.order-grid-mini {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.order-card-btn.mini {
+    padding: 15px 5px;
+    font-size: 15px;
+    border-radius: 15px;
+}
+
+/* БЛОК ИНФО */
+.order-info-box {
+    margin: 40px 0 30px;
+    padding: 25px 15px;
+    background: #fafafa;
+    border-radius: 25px;
+    border: 1px solid #f0f0f0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.info-item {
+    padding: 8px 0;
+}
+
+.info-item strong {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #d4af37;
+    margin-bottom: 4px;
+}
+
+.info-item span {
+    font-family: 'Comfortaa', cursive;
+    color: #4a3c31;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.info-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #e8e8e8, transparent);
+    width: 60%;
+    margin: 5px auto;
+}
+
+/* ГЛАВНАЯ КНОПКА */
+.btn-main {
+    display: inline-block;
+    text-decoration: none;
+    background: #3d2b1f;
+    color: #ffffff;
+    padding: 16px 30px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 30px;
 }
 
 /* REVIEWS SLIDER */
