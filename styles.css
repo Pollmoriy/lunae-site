@@ -595,15 +595,184 @@ body {
     font-size: 10px;
 }
 
-/* CONTACTS */
-.contacts {
-    text-align:center;
-    padding:60px 20px;
+/* =========================================
+   БЛОК: КОНТАКТЫ (DARK STYLE)
+   ========================================= */
+
+   .contacts-dark {
+    padding: 70px 20px;
+    background: #2b1d14; /* Глубокий темный шоколад */
+    position: relative;
+    overflow: hidden;
+    text-align: center;
 }
 
-.contacts a {
-    display:block;
-    margin:10px;
-    text-decoration:none;
-    font-weight:bold;
+/* Магическое свечение на фоне */
+.contact-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.light-text {
+    color: #FFFDE7 !important;
+}
+
+/* Золотые волны для темного фона */
+.gold-wave {
+    filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg);
+}
+
+.contacts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05); /* Почти прозрачные кнопки */
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 15px 25px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(5px); /* Эффект стекла */
+}
+
+.contact-item span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFDE7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Кружок под иконку */
+.icon-circle {
+    width: 45px;
+    height: 45px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+.icon-circle img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    /* Если иконки черные, эта строка сделает их золотистыми */
+    filter: brightness(0) invert(0.8) sepia(1) saturate(3) hue-rotate(10deg);
+}
+
+/* Эффект при нажатии */
+.contact-item:active {
+    background: rgba(212, 175, 55, 0.2);
+    transform: scale(0.95);
+    border-color: #d4af37;
+}
+
+/* Небольшие "звезды" на фоне */
+.contacts-dark::before {
+    content: '✦';
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    color: rgba(212, 175, 55, 0.3);
+    font-size: 10px;
+}
+
+.contacts-dark::after {
+    content: '✦';
+    position: absolute;
+    bottom: 15%;
+    right: 15%;
+    color: rgba(212, 175, 55, 0.3);
+    font-size: 14px;
+}
+
+/* =========================================
+   ФУТЕР (FOOTER)
+   ========================================= */
+
+   .footer {
+    padding: 40px 20px 30px;
+    background: #2b1d14; /* Тот же цвет, что и у контактов */
+    text-align: center;
+    border-top: 1px solid rgba(212, 175, 55, 0.1); /* Тонкая разделительная линия */
+}
+
+.footer-container {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Оговорка про условия */
+.footer-terms {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    line-height: 1.6;
+    color: rgba(255, 253, 231, 0.5); /* Приглушенный ванильный */
+    margin: 0;
+    font-style: italic;
+}
+
+/* Ссылки */
+.footer-links {
+    margin: 5px 0;
+}
+
+.footer-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    color: #d4af37; /* Золотистый акцент */
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.footer-link:active {
+    opacity: 1;
+}
+
+/* Нижняя часть */
+.footer-bottom {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-bottom p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    color: rgba(255, 253, 231, 0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.footer-spark {
+    color: rgba(212, 175, 55, 0.4);
+    font-size: 12px;
 }
