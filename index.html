@@ -12,17 +12,22 @@
 <!-- HEADER -->
 <header class="header">
     <div class="logo">LUNAE 🌙</div>
-    <div class="burger" onclick="toggleMenu()">☰</div>
+    <div class="burger" id="burger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 </header>
 
-<!-- FULLSCREEN MENU -->
 <nav id="menu" class="menu">
-    <a onclick="toggleMenu()" href="#home">Главная</a>
-    <a onclick="toggleMenu()" href="#catalog">Каталог</a>
-    <a onclick="toggleMenu()" href="#custom">На заказ</a>
-    <a onclick="toggleMenu()" href="#reviews">Отзывы</a>
-    <a onclick="toggleMenu()" href="#care">Уход</a>
-    <a onclick="toggleMenu()" href="#contacts">Контакты</a>
+    <div class="menu-content">
+        <a onclick="toggleMenu()" href="#home">Главная</a>
+        <a onclick="toggleMenu()" href="#catalog">Каталог</a>
+        <a onclick="toggleMenu()" href="#custom">На заказ</a>
+        <a onclick="toggleMenu()" href="#reviews">Отзывы</a>
+        <a onclick="toggleMenu()" href="#care">Уход</a>
+        <a onclick="toggleMenu()" href="#contacts">Контакты</a>
+    </div>
 </nav>
 
 <!-- HERO -->
@@ -163,11 +168,11 @@
             Больше отзывов в актуальном в Instagram
         </a>
     </div>
-    <div class="gold-divider"></div>
+    <div id="care" class="gold-divider"></div>
 </section>
 
 <!-- CARE ACCORDION -->
-<section id="care" class="care">
+<section class="care">
     <div class="order-header">
         <span class="wave-line"></span>
         <h2>Уход за сумкой</h2>
@@ -286,8 +291,19 @@
 <script>
     // 1. Скрипт для Бургер-меню
     function toggleMenu() {
-        document.getElementById("menu").classList.toggle("active");
+    const menu = document.getElementById("menu");
+    const burger = document.getElementById("burger");
+    
+    menu.classList.toggle("active");
+    burger.classList.toggle("active");
+
+    // Блокируем скролл страницы, когда меню открыто
+    if (menu.classList.contains("active")) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "auto";
     }
+}
     
     // 2. Скрипт для Аккордеона (ЕДИНЫЙ И ИСПРАВЛЕННЫЙ)
     document.querySelectorAll('.accordion').forEach(button => {
