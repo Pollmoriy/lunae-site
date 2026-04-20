@@ -469,6 +469,132 @@ body {
     padding-bottom: 10px;
 }
 
+/* =========================================
+   БЛОК: УХОД (CARE ACCORDION)
+   ========================================= */
+
+   .care {
+    padding: 30px 20px;
+    background: #ffffff;
+    text-align: center;
+}
+
+.care-container {
+    width: 100%;
+    max-width: 500px; /* Ограничение для телефонов */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Расстояние между блоками */
+}
+
+.care-container {
+    margin-bottom: 50px; /* Создаст "дыру" между списком и разделителем */
+}
+
+.care-item {
+    background: rgba(255, 253, 231, 0.4); /* Полупрозрачный ванильный */
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
+    overflow: hidden; /* Чтобы панель не вылезала за скругления */
+    transition: all 0.3s ease;
+}
+
+
+/* Кнопка аккордеона */
+.accordion {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4a3c31;
+    transition: 0.3s;
+}
+
+.accordion span {
+    letter-spacing: 0.5px;
+}
+
+/* Иконка Плюсика */
+.acc-icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.acc-icon::before, .acc-icon::after {
+    content: '';
+    position: absolute;
+    background-color: #d4af37;
+    transition: transform 0.4s ease;
+}
+
+/* Горизонтальная палочка */
+.acc-icon::before {
+    top: 9px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+}
+
+/* Вертикальная палочка */
+.acc-icon::after {
+    top: 0;
+    left: 9px;
+    width: 2px;
+    height: 100%;
+}
+
+/* Состояние при открытии (вращаем иконку) */
+.accordion.active .acc-icon::after {
+    transform: rotate(90deg);
+    opacity: 0; /* Делаем из плюса минус */
+}
+
+.accordion.active {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* Выпадающая панель */
+.panel {
+    max-height: 0; /* Этого достаточно, чтобы скрыть текст */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; /* Плавность */
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.panel-content {
+    padding: 0 25px 25px 25px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #7a6a5e;
+}
+
+.panel-content p {
+    margin: 8px 0;
+    text-align: left;
+    position: relative;
+    padding-left: 15px;
+}
+
+/* Маленькая золотая точка перед пунктами */
+.panel-content p::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: #d4af37;
+    font-size: 10px;
+}
+
 /* CONTACTS */
 .contacts {
     text-align:center;

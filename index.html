@@ -168,34 +168,68 @@
 
 <!-- CARE ACCORDION -->
 <section id="care" class="care">
-    <h2>Уход за сумкой</h2>
-
-    <button class="accordion">Хранение и носка</button>
-    <div class="panel">
-        Декоративные нити можно аккуратно подрезать ножницами до нужной длины.
-        Для защиты можно использовать водоотталкивающий спрей.
-        Хранить сумку лучше горизонтально, вдали от солнца.
+    <div class="order-header">
+        <span class="wave-line"></span>
+        <h2>Уход за сумкой</h2>
+        <span class="wave-line"></span>
     </div>
 
-    <button class="accordion">Ручная стирка</button>
-    <div class="panel">
-        Старайтесь очищать загрязнения локально.  
-        Используйте мягкое средство и прохладную воду до 30°.  
-        Не тереть и не применять отбеливатель.
+    <div class="care-container">
+        <div class="care-item">
+            <button class="accordion">
+                <span>Хранение и носка</span>
+                <span class="acc-icon"></span>
+            </button>
+            <div class="panel">
+                <div class="panel-content">
+                    <p>Декоративные нити можно аккуратно подрезать ножницами до нужной длины.</p>
+                    <p>Для защиты можно использовать водоотталкивающий спрей.</p>
+                    <p>Хранить сумку лучше горизонтально, вдали от солнца.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="care-item">
+            <button class="accordion">
+                <span>Ручная стирка</span>
+                <span class="acc-icon"></span>
+            </button>
+            <div class="panel">
+                <div class="panel-content">
+                    <p>Старайтесь очищать загрязнения локально.</p>
+                    <p>Используйте мягкое средство и прохладную воду до 30°.</p>
+                    <p>Не тереть и не применять отбеливатель.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="care-item">
+            <button class="accordion">
+                <span>Машинная стирка</span>
+                <span class="acc-icon"></span>
+            </button>
+            <div class="panel">
+                <div class="panel-content">
+                    <p>Не рекомендуется. Если необходимо — только деликатный режим, мешочек для стирки и мягкое средство.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="care-item">
+            <button class="accordion">
+                <span>Сушка</span>
+                <span class="acc-icon"></span>
+            </button>
+            <div class="panel">
+                <div class="panel-content">
+                    <p>Не выкручивать. Промокнуть полотенцем и сушить горизонтально.</p>
+                    <p>Пушистые сумки можно распушить феном на холодном режиме.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <button class="accordion">Машинная стирка</button>
-    <div class="panel">
-        Не рекомендуется. Если необходимо — только деликатный режим,
-        мешочек для стирки и мягкое средство.
-    </div>
-
-    <button class="accordion">Сушка</button>
-    <div class="panel">
-        Не выкручивать. Промокнуть полотенцем и сушить горизонтально.
-        Пушистые сумки можно распушить феном на холодном режиме.
-    </div>
-
+    <div class="gold-divider"></div>
 </section>
 
 <!-- CONTACTS -->
@@ -207,19 +241,30 @@
 </section>
 
 <script>
-function toggleMenu() {
-    document.getElementById("menu").classList.toggle("active");
-}
-
-var acc = document.getElementsByClassName("accordion");
-for (let i = 0; i < acc.length; i++) {
-  acc[i].onclick = function() {
-    this.classList.toggle("open");
-    var panel = this.nextElementSibling;
-    panel.style.display = panel.style.display === "block" ? "none" : "block";
-  }
-}
+    // 1. Скрипт для Бургер-меню
+    function toggleMenu() {
+        document.getElementById("menu").classList.toggle("active");
+    }
+    
+    // 2. Скрипт для Аккордеона (ЕДИНЫЙ И ИСПРАВЛЕННЫЙ)
+    document.querySelectorAll('.accordion').forEach(button => {
+        button.onclick = function() {
+            // Переключаем класс active для иконки и цвета кнопки
+            this.classList.toggle('active');
+            
+            const panel = this.nextElementSibling;
+    
+            if (this.classList.contains('active')) {
+                // Открываем: задаем высоту контента
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } else {
+                // Закрываем: обнуляем высоту
+                panel.style.maxHeight = "0";
+            }
+        };
+    });
 </script>
+
 
 </body>
 </html>
