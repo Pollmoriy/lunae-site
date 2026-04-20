@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог | LUNAE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@300;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/catalog.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo" onclick="location.href='index.html'">LUNAE 🌙</div>
+        <div class="burger" id="burger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <nav id="menu" class="menu">
+        <div class="menu-content">
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="index.html#custom">На заказ</a>
+            <a href="index.html#reviews">Отзывы</a>
+            <a href="index.html#care">Уход</a>
+            <a href="index.html#contacts">Контакты</a>
+        </div>
+    </nav>
+
+    <div class="catalog-top">
+        <h1>Каталог</h1>
+        <p>Выберите свою идеальную сумку 🌙</p>
+    </div>
+
+    <section class="catalog-tabs">
+        <button class="tab-btn active" onclick="openTab('available')">В наличии</button>
+        <button class="tab-btn" onclick="openTab('models')">На повтор</button>
+        <button class="tab-btn" onclick="openTab('other')">Не сумки</button>
+    </section>
+
+    <section id="available" class="tab-content active">
+        <div class="catalog-grid">
+            
+            <a href="products/bag-moon.html" class="product-card">
+                <div class="product-img-wrap">
+                    <img src="img/bag1.jpg" alt="Moon Bag">
+                </div>
+                <h3>Moon Bag</h3>
+                <p class="price">5 900 ₽</p>
+            </a>
+
+            <a href="products/bag-latte.html" class="product-card">
+                <div class="product-img-wrap">
+                    <img src="img/bag2.jpg" alt="Latte Bag">
+                </div>
+                <h3>Latte Bag</h3>
+                <p class="price">6 200 ₽</p>
+            </a>
+
+            <a href="products/bag-sun.html" class="product-card">
+                <div class="product-img-wrap">
+                    <img src="img/bag3.jpg" alt="Sun Bag">
+                </div>
+                <h3>Sun Bag</h3>
+                <p class="price">5 500 ₽</p>
+            </a>
+
+        </div>
+    </section>
+
+    <section id="models" class="tab-content">
+        <div class="catalog-grid">
+            
+            <a href="products/model-cloud.html" class="product-card">
+                <div class="product-img-wrap">
+                    <img src="img/model1.jpg" alt="Cloud Model">
+                </div>
+                <h3>Cloud Model</h3>
+                <p class="price">от 6 000 ₽</p>
+            </a>
+
+            <a href="products/model-classic.html" class="product-card">
+                <div class="product-img-wrap">
+                    <img src="img/model2.jpg" alt="Classic Model">
+                </div>
+                <h3>Classic Model</h3>
+                <p class="price">от 5 800 ₽</p>
+            </a>
+
+        </div>
+    </section>
+
+    <section id="other" class="tab-content">
+        <div class="catalog-grid">
+            
+            <a href="products/basket.html" class="product-card">
+                <div class="product-img-wrap">
+                    <img src="img/other1.jpg" alt="Корзинка">
+                </div>
+                <h3>Корзинка</h3>
+                <p class="price">3 200 ₽</p>
+            </a>
+
+            <a href="products/organizer.html" class="product-card">
+                <div class="product-img-wrap">
+                    <img src="img/other2.jpg" alt="Органайзер">
+                </div>
+                <h3>Органайзер</h3>
+                <p class="price">2 400 ₽</p>
+            </a>
+
+        </div>
+    </section>
+
+    <script>
+        // Функция для бургера
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            const burger = document.getElementById("burger");
+            
+            menu.classList.toggle("active");
+            burger.classList.toggle("active");
+
+            if (menu.classList.contains("active")) {
+                document.body.style.overflow = "hidden";
+            } else {
+                document.body.style.overflow = "auto";
+            }
+        }
+
+        // Функция для вкладок
+        function openTab(tabId) {
+    // 1. Находим все кнопки и убираем активный класс
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    // 2. Находим все контентные блоки (вкладки)
+    const tabs = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach(tab => {
+        // Сначала убираем класс active (запускает CSS-анимацию скрытия)
+        tab.classList.remove('active');
+        
+        // Через очень короткую паузу полностью скрываем (чтобы не занимал место)
+        // Но для более плавного эффекта можно оставить 'block', 
+        // если вкладки одинаковой высоты.
+        setTimeout(() => {
+            if (!tab.classList.contains('active')) {
+                tab.style.display = 'none';
+            }
+        }, 10); // Пауза всего 10мс, чтобы CSS успел сработать
+    });
+
+    // 3. Показываем нужную вкладку
+    const activeTab = document.getElementById(tabId);
+    if (activeTab) {
+        // Сначала ставим display: block, чтобы блок появился в DOM
+        activeTab.style.display = 'block';
+        
+        // Через микро-паузу добавляем класс active (запускает CSS-анимацию появления)
+        // Это КРИТИЧНО для срабатывания transition
+        setTimeout(() => {
+            activeTab.classList.add('active');
+        }, 20); 
+    }
+
+    // 4. Активируем кнопку, на которую нажали
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+    }
+}
+    </script>
+
+</body>
+</html>

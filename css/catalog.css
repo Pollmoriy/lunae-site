@@ -1,0 +1,291 @@
+/* HEADER */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2000; 
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    box-sizing: border-box;
+}
+
+.burger {
+    width: 30px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+    z-index: 2001;
+}
+
+.burger span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: #3d2b1f;
+    border-radius: 2px;
+    transition: .25s ease-in-out;
+}
+
+.burger span:nth-child(1) { top: 0px; }
+.burger span:nth-child(2) { top: 9px; }
+.burger span:nth-child(3) { top: 18px; }
+
+.burger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
+.burger.active span:nth-child(2) { opacity: 0; left: -60px; }
+.burger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 253, 245, 0.98); 
+    z-index: 1500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+}
+
+.menu a {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    text-decoration: none;
+    color: #3d2b1f;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.4s ease;
+}
+
+.menu.active a {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu.active a:nth-child(1) { transition-delay: 0.1s; }
+.menu.active a:nth-child(2) { transition-delay: 0.2s; }
+.menu.active a:nth-child(3) { transition-delay: 0.3s; }
+.menu.active a:nth-child(4) { transition-delay: 0.4s; }
+.menu.active a:nth-child(5) { transition-delay: 0.5s; }
+.menu.active a:nth-child(6) { transition-delay: 0.6s; }
+
+
+/* ОБЩИЕ НАСТРОЙКИ */
+/* 1. ПОДТЯГИВАЕМ КАТАЛОГ ВЫШЕ */
+body {
+    padding-top: 60px; /* Уменьшили отступ от хедера */
+    background-color: #ffffff;
+}
+
+
+.catalog-top {
+    text-align: center;
+    padding: 20px 20px 10px;
+    /* ИНТЕРЕСНЫЙ ФОН: мягкий радиальный градиент */
+    background: radial-gradient(circle at top, #FFFDF5 0%, #ffffff 70%);
+    position: relative;
+}
+
+.catalog-top h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    color: #3d2b1f;
+    margin: 0 0 5px 0;
+}
+
+.catalog-top p {
+    font-family: 'Comfortaa', cursive;
+    font-size: 13px;
+    color: #8b7355;
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* 2. ВИЗУАЛЬНОЕ ОТДЕЛЕНИЕ КНОПОК */
+.catalog-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px;
+    margin: 10px 15px 25px;
+    /* Подложка для кнопок */
+    background: #f8f8f8; 
+    border-radius: 30px;
+    border: 1px solid #f0f0f0;
+}
+
+.tab-btn {
+    flex: 1; /* Кнопки растягиваются равномерно */
+    padding: 10px 5px;
+    border: none;
+    background: transparent;
+    border-radius: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #8b7355;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.tab-btn.active {
+    background: #ffffff; /* Активная кнопка "выпуклая" белая */
+    color: #3d2b1f;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* 3. КАРТОЧКИ ТОВАРОВ С ТЕНЯМИ */
+.product-card {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.product-img-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 20px;
+    /* ТЕНЬ ДЛЯ КАРТИНКИ */
+    box-shadow: 0 8px 20px rgba(139, 115, 85, 0.15); 
+    margin-bottom: 8px; /* Сделали ближе к тексту */
+    background: #f9f9f9;
+}
+
+.product-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 4. ПОДПИСИ БЛИЖЕ */
+.product-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: #3d2b1f;
+    margin: 0 0 2px 8px; /* Минимум отступа снизу */
+    text-align: left;
+}
+
+.product-card .price {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #d4af37;
+    margin: 0 0 0 8px;
+    text-align: left;
+}
+
+/* Сетка (чуть подправим gap) */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px 15px;
+    padding: 0 15px 40px;
+}
+
+/* Базовое состояние для всех вкладок */
+.tab-content {
+    /* Скрываем, но оставляем в потоке для анимации */
+    display: none; 
+    opacity: 0;
+    transform: translateY(15px); /* Чуть опускаем вниз */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    will-change: opacity, transform; /* Подсказка для плавной работы на мобильных */
+}
+
+/* Состояние АКТИВНОЙ вкладки */
+.tab-content.active {
+    display: block !important;
+    opacity: 1; /* Полностью проявляем */
+    transform: translateY(0); /* Возвращаем на место */
+}
+
+.catalog-top h1,
+.catalog-top p,
+.catalog-tabs,
+.catalog-grid .product-card {
+    opacity: 0;
+    transform: translateY(20px); /* Выплывают снизу */
+    animation: elementFadeIn 0.8s ease forwards; /* Длительность 0.8с */
+    will-change: opacity, transform;
+}
+
+/* Сама анимация */
+@keyframes elementFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- ОЧЕРЕДЬ ПОЯВЛЕНИЯ (STAGGERED DELAYS) --- */
+
+/* 1. Сначала Заголовок "Каталог" (без задержки) */
+.catalog-top h1 {
+    animation-delay: 0.1s;
+}
+
+/* 2. Подзаголовок "Выберите сумку..." (чуть позже) */
+.catalog-top p {
+    animation-delay: 0.25s;
+}
+
+/* 3. Капсула с Табами (кнопками) */
+.catalog-tabs {
+    animation-delay: 0.4s;
+}
+
+/* 4. ОЧЕРЕДЬ ДЛЯ КАРТОЧЕК ТОВАРОВ (самое вкусное) */
+
+/* Первая карточка (в левой колонке) */
+.catalog-grid .product-card:nth-child(1) {
+    animation-delay: 0.55s;
+}
+
+/* Вторая карточка (в правой колонке) */
+.catalog-grid .product-card:nth-child(2) {
+    animation-delay: 0.65s;
+}
+
+/* Третья карточка (следующий ряд, левая) */
+.catalog-grid .product-card:nth-child(3) {
+    animation-delay: 0.75s;
+}
+
+/* Четвертая карточка (следующий ряд, правая) */
+.catalog-grid .product-card:nth-child(4) {
+    animation-delay: 0.85s;
+}
+
+/* Пятая карточка... (и так далее, если их много) */
+.catalog-grid .product-card:nth-child(5) {
+    animation-delay: 0.95s;
+}
+
+/* Шестая карточка... */
+.catalog-grid .product-card:nth-child(n+6) {
+    animation-delay: 1.05s; /* Все остальные появляются вместе */
+}
