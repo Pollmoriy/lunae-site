@@ -251,61 +251,62 @@
     </section>
 
     <script>
-        // Функция для бургера
-        function toggleMenu() {
-            const menu = document.getElementById("menu");
-            const burger = document.getElementById("burger");
-            
-            menu.classList.toggle("active");
-            burger.classList.toggle("active");
+       // Основная функция переключения
+function openTab(tabId) {
+    // Скрываем все вкладки
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+        tab.style.display = 'none';
+    });
 
-            if (menu.classList.contains("active")) {
-                document.body.style.overflow = "hidden";
-            } else {
-                document.body.style.overflow = "auto";
-            }
-        }
-
-        // Функция для вкладок
-        function openTab(tabId) {
-    // 1. Находим все кнопки и убираем активный класс
+    // Убираем активный класс у всех кнопок
     const buttons = document.querySelectorAll('.tab-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
 
-    // 2. Находим все контентные блоки (вкладки)
-    const tabs = document.querySelectorAll('.tab-content');
-    
-    tabs.forEach(tab => {
-        // Сначала убираем класс active (запускает CSS-анимацию скрытия)
-        tab.classList.remove('active');
-        
-        // Через очень короткую паузу полностью скрываем (чтобы не занимал место)
-        // Но для более плавного эффекта можно оставить 'block', 
-        // если вкладки одинаковой высоты.
-        setTimeout(() => {
-            if (!tab.classList.contains('active')) {
-                tab.style.display = 'none';
-            }
-        }, 10); // Пауза всего 10мс, чтобы CSS успел сработать
-    });
-
-    // 3. Показываем нужную вкладку
+    // Показываем нужную вкладку
     const activeTab = document.getElementById(tabId);
     if (activeTab) {
-        // Сначала ставим display: block, чтобы блок появился в DOM
         activeTab.style.display = 'block';
-        
-        // Через микро-паузу добавляем класс active (запускает CSS-анимацию появления)
-        // Это КРИТИЧНО для срабатывания transition
-        setTimeout(() => {
-            activeTab.classList.add('active');
-        }, 20); 
+        setTimeout(() => activeTab.classList.add('active'), 10);
     }
 
-    // 4. Активируем кнопку, на которую нажали
-    if (event && event.currentTarget) {
-        event.currentTarget.classList.add('active');
+    // ПОДСВЕТКА КНОПКИ: ищем кнопку, которая управляет этим tabId
+    const targetBtn = document.querySelector(`.tab-btn[onclick*="${tabId}"]`);
+    if (targetBtn) {
+        targetBtn.classList.add('active');
     }
+}
+
+// Слушатель полной загрузки страницы
+window.addEventListener('load', function() {
+    // Проверяем, есть ли хэш в адресе (например, #models)
+    const hash = window.location.hash.replace('#', '');
+    
+    if (hash && document.getElementById(hash)) {
+        // Если есть хэш и такой ID существует — открываем его
+        openTab(hash);
+        
+        // Скроллим к табам через полсекунды
+        setTimeout(() => {
+            const tabsContainer = document.querySelector('.catalog-tabs');
+            if (tabsContainer) {
+                tabsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 500);
+    } else {
+        // Если хэша нет — открываем первую вкладку по умолчанию
+        openTab('available');
+    }
+});
+
+// Твой старый код для бургер-меню (оставь его ниже)
+function toggleMenu() {
+    const menu = document.getElementById("menu");
+    const burger = document.getElementById("burger");
+    menu.classList.toggle("active");
+    burger.classList.toggle("active");
+    document.body.style.overflow = menu.classList.contains("active") ? "hidden" : "auto";
 }
     </script>
 
