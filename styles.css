@@ -357,33 +357,116 @@ body {
 }
 
 /* REVIEWS SLIDER */
-.slider {
-    display:flex;
-    overflow-x:auto;
-    gap:15px;
-    padding:20px;
+.reviews {
+    padding: 60px 0 20px 0;
+    /* Мягкий кремовый фон для контраста с белым предыдущим блоком */
+    background-color: #FFFDF5; 
+    text-align: center;
+    overflow: hidden;
+    /* Скругление сверху для мягкого перехода */
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    position: relative;
+    box-shadow: inset 0 20px 40px rgba(0,0,0,0.02); /* Легкая внутренняя тень для глубины */
 }
 
-.slider img {
-    width:250px;
-    border-radius:20px;
+.reviews-container {
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    padding: 30px 0 60px 0;
+    scroll-snap-type: x mandatory; 
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
 }
 
-/* ACCORDION */
-.accordion {
-    width:100%;
-    padding:15px;
-    border:none;
-    background:white;
-    margin-top:10px;
-    border-radius:15px;
-    font-weight:bold;
+.reviews-container::-webkit-scrollbar {
+    display: none;
 }
 
-.panel {
-    display:none;
-    padding:15px;
-    text-align:left;
+.reviews-track {
+    display: flex;
+    padding-left: 10vw; /* Чтобы первая карточка была по центру при старте */
+    padding-right: 10vw;
+    gap: 20px;
+}
+
+.review-card {
+    flex: 0 0 80vw; 
+    scroll-snap-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.review-frame {
+    width: 100%;
+    aspect-ratio: 4 / 5; 
+    background: #ffffff; /* Чисто белый цвет рамки теперь выделяется */
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 24px;
+    /* Сделал тень чуть более выразительной на кремовом фоне */
+    box-shadow: 0 15px 30px rgba(139, 115, 85, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.1); /* Тонкая золотистая кайма */
+}
+
+.review-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+/* Настройка золотого разделителя под секцией */
+.reviews .gold-divider {
+    margin-top: 20px;
+    opacity: 0.4;
+}
+
+/* ТЕКСТОВАЯ ССЫЛКА НА ИНСТАГРАМ */
+.insta-text-wrap {
+    margin: 0px 0 45px; /* Отступы для баланса */
+    padding: 0 30px;
+}
+
+.insta-text-link {
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; /* Тонкий, аккуратный шрифт */
+    font-weight: 500;
+    color: #8b7355; /* Твой благородный цвет */
+    letter-spacing: 1px;
+    display: inline-block;
+    position: relative;
+    opacity: 0.8;
+}
+
+/* Золотистая искорка перед текстом */
+.insta-sparkle {
+    color: #d4af37;
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+/* Тонкое подчеркивание, которое намекает на ссылку */
+.insta-text-link::after {
+    content: '';
+    position: absolute;
+    width: 40%; /* Подчеркиваем не всё слово, а часть — для изящности */
+    height: 1px;
+    bottom: -4px;
+    left: 30%;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.insta-text-link:active {
+    opacity: 1;
+    transform: translateY(1px);
+}
+
+/* Небольшая правка для общей секции, чтобы всё влезло */
+.reviews {
+    padding-bottom: 10px;
 }
 
 /* CONTACTS */
