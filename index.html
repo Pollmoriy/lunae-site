@@ -72,7 +72,7 @@
               <svg viewBox="0 0 140 90" class="cloud-svg">
                 <path d="M30,75 C15,75 5,65 10,50 C5,35 20,20 40,25 C50,10 70,10 80,25 C95,10 115,15 125,35 C140,35 145,55 135,70 C125,85 100,85 80,80 C60,90 40,85 30,75 Z" fill="white"/>
               </svg>
-              <span class="cloud-text central-text">УНИКАКЛЬНЫЙ ДИЗАЙН</span>
+              <span class="cloud-text central-text">УНИКАЛЬНЫЙ ДИЗАЙН</span>
             </div>
           </div>
     </div>
@@ -297,7 +297,6 @@
     menu.classList.toggle("active");
     burger.classList.toggle("active");
 
-    // Блокируем скролл страницы, когда меню открыто
     if (menu.classList.contains("active")) {
         document.body.style.overflow = "hidden";
     } else {
@@ -308,16 +307,13 @@
     // 2. Скрипт для Аккордеона (ЕДИНЫЙ И ИСПРАВЛЕННЫЙ)
     document.querySelectorAll('.accordion').forEach(button => {
         button.onclick = function() {
-            // Переключаем класс active для иконки и цвета кнопки
             this.classList.toggle('active');
             
             const panel = this.nextElementSibling;
     
             if (this.classList.contains('active')) {
-                // Открываем: задаем высоту контента
                 panel.style.maxHeight = panel.scrollHeight + "px";
             } else {
-                // Закрываем: обнуляем высоту
                 panel.style.maxHeight = "0";
             }
         };

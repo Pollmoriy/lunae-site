@@ -5,7 +5,6 @@ body {
 }
 
 /* HEADER */
-/* Шапка */
 .header {
     position: fixed;
     top: 0;
@@ -14,13 +13,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 2000; /* Выше всего */
+    z-index: 2000; 
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     box-sizing: border-box;
 }
 
-/* Бургер-иконка (Три полоски) */
 .burger {
     width: 30px;
     height: 20px;
@@ -43,31 +41,26 @@ body {
 .burger span:nth-child(2) { top: 9px; }
 .burger span:nth-child(3) { top: 18px; }
 
-/* Анимация бургера в Крестик */
 .burger.active span:nth-child(1) { top: 9px; transform: rotate(135deg); }
 .burger.active span:nth-child(2) { opacity: 0; left: -60px; }
 .burger.active span:nth-child(3) { top: 9px; transform: rotate(-135deg); }
 
-/* Полноэкранное меню */
 .menu {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 253, 245, 0.98); /* Ванильный фон */
+    background: rgba(255, 253, 245, 0.98); 
     z-index: 1500;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    /* Начальное состояние (скрыто) */
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-/* Состояние при открытии */
 .menu.active {
     opacity: 1;
     visibility: visible;
@@ -90,13 +83,11 @@ body {
     transition: 0.4s ease;
 }
 
-/* Появление ссылок по очереди */
 .menu.active a {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Задержка для каждой ссылки (чтобы выплывали одна за другой) */
 .menu.active a:nth-child(1) { transition-delay: 0.1s; }
 .menu.active a:nth-child(2) { transition-delay: 0.2s; }
 .menu.active a:nth-child(3) { transition-delay: 0.3s; }
@@ -104,7 +95,9 @@ body {
 .menu.active a:nth-child(5) { transition-delay: 0.5s; }
 .menu.active a:nth-child(6) { transition-delay: 0.6s; }
 
-/* HERO */
+/* =========================================
+   БЛОК: ХЕРО
+   ========================================= */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&family=Comfortaa:wght@700&display=swap');
 
 .hero {
@@ -116,7 +109,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Твой благородный кремовый градиент */
     background: linear-gradient(180deg, 
         #FFFDE7 0%,   
         #FFF9C4 40%,  
@@ -124,18 +116,17 @@ body {
     );
     overflow: hidden;
     padding-top: 40px;
-    z-index: 1; /* Базовый слой секции */
+    z-index: 1; 
 }
 
-/* ФОНОВЫЕ ЭЛЕМЕНТЫ (ЛУНА И ИСКРЫ) — САМЫЙ НИЖНИЙ СЛОЙ */
 .background-elements {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Луна будет здесь */
-    pointer-events: none; /* Чтобы не мешала кликать по ссылкам */
+    z-index: 1; 
+    pointer-events: none; 
 }
 
 .moon {
@@ -153,10 +144,9 @@ body {
     animation: moonPulse 6s infinite ease-in-out;
 }
 
-/* ТЕКСТ БРЕНДА — САМЫЙ ВЕРХНИЙ СЛОЙ */
 .hero-content { 
     position: relative;
-    z-index: 100; /* Выше луны и выше облаков */
+    z-index: 100; 
     margin-bottom: 20px;
 }
 
@@ -166,7 +156,6 @@ body {
     color: #3d2b1f; 
     margin: 0; 
     letter-spacing: 4px;
-    /* Легкое свечение букв, чтобы они "отрывались" от фона */
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
@@ -179,13 +168,12 @@ body {
     margin-top: 10px; 
 }
 
-/* ОБЛАКА — СРЕДНИЙ СЛОЙ */
 .clouds-stage {
     position: relative;
     width: 100%;
     height: 480px; 
     margin-top: 20px;
-    z-index: 10; /* Выше луны, но ниже букв LUNAE */
+    z-index: 10; 
 }
 
 .cloud-wrap {
@@ -213,7 +201,7 @@ body {
     font-family: 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 16px; 
-    color: #8b7355; /* Твой благородный коричнево-золотой */
+    color: #8b7355; 
     width: 60%; 
     text-align: center;
     line-height: 1.2;
@@ -225,7 +213,6 @@ body {
     text-shadow: 1px 1px 0px #fff;
 }
 
-/* Центральное облако (текст крупнее и на своем месте) */
 .central-text {
     font-size: 19px;
     top: 55%; 
@@ -233,7 +220,6 @@ body {
     width: 70%;
 }
 
-/* ПОЗИЦИИ ОБЛАКОВ */
 .left-side { left: -50px; top: 10px; }
 .right-side { right: -50px; top: 150px; }
 .center-side { 
@@ -243,11 +229,9 @@ body {
     width: 370px; 
 }
 
-/* Фиксы текста для боков */
 .left-side .cloud-text { padding-left: 35px; }
 .right-side .cloud-text { padding-right: 15px; }
 
-/* ИСКРЫ */
 .spark {
     position: absolute;
     width: 18px; 
@@ -278,7 +262,9 @@ body {
     z-index: 100;
 }
 
-/* ORDER */
+/* =========================================
+   БЛОК: КАК ЗАКАЗАТЬ
+   ========================================= */
 .order {
     padding: 60px 15px;
     padding-bottom: 10px;
@@ -289,7 +275,6 @@ body {
     align-items: center;
 }
 
-/* ЗАГОЛОВОК */
 .order-header {
     display: flex;
     align-items: center;
@@ -313,7 +298,6 @@ body {
     background-repeat: no-repeat;
 }
 
-/* ТЕКСТОВЫЕ ПРОСЛОЙКИ */
 .order-step-text {
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
@@ -321,7 +305,6 @@ body {
     margin: 15px 0;
 }
 
-/* ГЛАВНЫЕ КНОПКИ (НА ВСЮ ШИРИНУ) */
 .order-stack {
     display: flex;
     flex-direction: column;
@@ -352,7 +335,6 @@ body {
     font-size: 20px;
 }
 
-/* РАЗДЕЛИТЕЛЬ "ИЛИ" */
 .order-separator {
     font-family: 'Playfair Display', serif;
     font-style: italic;
@@ -361,7 +343,6 @@ body {
     margin: 10px 0;
 }
 
-/* МАЛЕНЬКИЕ КНОПКИ (ПО ДВЕ В РЯД) */
 .order-grid-mini {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -376,7 +357,6 @@ body {
     border-radius: 15px;
 }
 
-/* БЛОК ИНФО */
 .order-info-box {
     margin: 40px 0 30px;
     padding: 25px 15px;
@@ -415,7 +395,6 @@ body {
     margin: 5px auto;
 }
 
-/* ГЛАВНАЯ КНОПКА */
 .btn-main {
     display: inline-block;
     text-decoration: none;
@@ -431,18 +410,18 @@ body {
     margin-bottom: 30px;
 }
 
-/* REVIEWS SLIDER */
+/* =========================================
+   БЛОК: ОТЗЫВЫ
+   ========================================= */
 .reviews {
     padding: 60px 0 20px 0;
-    /* Мягкий кремовый фон для контраста с белым предыдущим блоком */
     background-color: #FFFDF5; 
     text-align: center;
     overflow: hidden;
-    /* Скругление сверху для мягкого перехода */
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
     position: relative;
-    box-shadow: inset 0 20px 40px rgba(0,0,0,0.02); /* Легкая внутренняя тень для глубины */
+    box-shadow: inset 0 20px 40px rgba(0,0,0,0.02);
 }
 
 .reviews-container {
@@ -461,7 +440,7 @@ body {
 
 .reviews-track {
     display: flex;
-    padding-left: 10vw; /* Чтобы первая карточка была по центру при старте */
+    padding-left: 10vw;
     padding-right: 10vw;
     gap: 20px;
 }
@@ -476,13 +455,12 @@ body {
 .review-frame {
     width: 100%;
     aspect-ratio: 4 / 5; 
-    background: #ffffff; /* Чисто белый цвет рамки теперь выделяется */
+    background: #ffffff; 
     padding: 12px;
     box-sizing: border-box;
     border-radius: 24px;
-    /* Сделал тень чуть более выразительной на кремовом фоне */
     box-shadow: 0 15px 30px rgba(139, 115, 85, 0.12);
-    border: 1px solid rgba(212, 175, 55, 0.1); /* Тонкая золотистая кайма */
+    border: 1px solid rgba(212, 175, 55, 0.1); 
 }
 
 .review-frame img {
@@ -492,42 +470,38 @@ body {
     border-radius: 16px;
 }
 
-/* Настройка золотого разделителя под секцией */
 .reviews .gold-divider {
     margin-top: 20px;
     opacity: 0.4;
 }
 
-/* ТЕКСТОВАЯ ССЫЛКА НА ИНСТАГРАМ */
 .insta-text-wrap {
-    margin: 0px 0 45px; /* Отступы для баланса */
+    margin: 0px 0 45px; 
     padding: 0 30px;
 }
 
 .insta-text-link {
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 13px; /* Тонкий, аккуратный шрифт */
+    font-size: 13px; 
     font-weight: 500;
-    color: #8b7355; /* Твой благородный цвет */
+    color: #8b7355; 
     letter-spacing: 1px;
     display: inline-block;
     position: relative;
     opacity: 0.8;
 }
 
-/* Золотистая искорка перед текстом */
 .insta-sparkle {
     color: #d4af37;
     margin-right: 5px;
     font-size: 14px;
 }
 
-/* Тонкое подчеркивание, которое намекает на ссылку */
 .insta-text-link::after {
     content: '';
     position: absolute;
-    width: 40%; /* Подчеркиваем не всё слово, а часть — для изящности */
+    width: 40%; 
     height: 1px;
     bottom: -4px;
     left: 30%;
@@ -539,13 +513,12 @@ body {
     transform: translateY(1px);
 }
 
-/* Небольшая правка для общей секции, чтобы всё влезло */
 .reviews {
     padding-bottom: 10px;
 }
 
 /* =========================================
-   БЛОК: УХОД (CARE ACCORDION)
+   БЛОК: УХОД 
    ========================================= */
 
    .care {
@@ -556,27 +529,26 @@ body {
 
 .care-container {
     width: 100%;
-    max-width: 500px; /* Ограничение для телефонов */
+    max-width: 500px; 
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Расстояние между блоками */
+    gap: 15px; 
 }
 
 .care-container {
-    margin-bottom: 50px; /* Создаст "дыру" между списком и разделителем */
+    margin-bottom: 50px; 
 }
 
 .care-item {
-    background: rgba(255, 253, 231, 0.4); /* Полупрозрачный ванильный */
+    background: rgba(255, 253, 231, 0.4); 
     border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 20px;
-    overflow: hidden; /* Чтобы панель не вылезала за скругления */
+    overflow: hidden; 
     transition: all 0.3s ease;
 }
 
 
-/* Кнопка аккордеона */
 .accordion {
     width: 100%;
     background: none;
@@ -598,7 +570,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Иконка Плюсика */
 .acc-icon {
     position: relative;
     width: 20px;
@@ -612,7 +583,6 @@ body {
     transition: transform 0.4s ease;
 }
 
-/* Горизонтальная палочка */
 .acc-icon::before {
     top: 9px;
     left: 0;
@@ -620,7 +590,6 @@ body {
     height: 2px;
 }
 
-/* Вертикальная палочка */
 .acc-icon::after {
     top: 0;
     left: 9px;
@@ -628,21 +597,19 @@ body {
     height: 100%;
 }
 
-/* Состояние при открытии (вращаем иконку) */
 .accordion.active .acc-icon::after {
     transform: rotate(90deg);
-    opacity: 0; /* Делаем из плюса минус */
+    opacity: 0;
 }
 
 .accordion.active {
     background: rgba(255, 255, 255, 0.6);
 }
 
-/* Выпадающая панель */
 .panel {
-    max-height: 0; /* Этого достаточно, чтобы скрыть текст */
+    max-height: 0; 
     overflow: hidden;
-    transition: max-height 0.3s ease-out; /* Плавность */
+    transition: max-height 0.3s ease-out;
     background: rgba(255, 255, 255, 0.4);
 }
 
@@ -661,7 +628,6 @@ body {
     padding-left: 15px;
 }
 
-/* Маленькая золотая точка перед пунктами */
 .panel-content p::before {
     content: '✦';
     position: absolute;
@@ -671,18 +637,17 @@ body {
 }
 
 /* =========================================
-   БЛОК: КОНТАКТЫ (DARK STYLE)
+   БЛОК: КОНТАКТЫ
    ========================================= */
 
    .contacts-dark {
     padding: 70px 20px;
-    background: #2b1d14; /* Глубокий темный шоколад */
+    background: #2b1d14; 
     position: relative;
     overflow: hidden;
     text-align: center;
 }
 
-/* Магическое свечение на фоне */
 .contact-glow {
     position: absolute;
     top: 50%;
@@ -698,7 +663,6 @@ body {
     color: #FFFDE7 !important;
 }
 
-/* Золотые волны для темного фона */
 .gold-wave {
     filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg);
 }
@@ -715,13 +679,13 @@ body {
 .contact-item {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.05); /* Почти прозрачные кнопки */
+    background: rgba(255, 255, 255, 0.05); 
     border: 1px solid rgba(212, 175, 55, 0.3);
     padding: 15px 25px;
     border-radius: 100px;
     text-decoration: none;
     transition: all 0.4s ease;
-    backdrop-filter: blur(5px); /* Эффект стекла */
+    backdrop-filter: blur(5px); 
 }
 
 .contact-item span {
@@ -733,7 +697,6 @@ body {
     text-transform: uppercase;
 }
 
-/* Кружок под иконку */
 .icon-circle {
     width: 45px;
     height: 45px;
@@ -750,18 +713,15 @@ body {
     width: 22px;
     height: 22px;
     object-fit: contain;
-    /* Если иконки черные, эта строка сделает их золотистыми */
     filter: brightness(0) invert(0.8) sepia(1) saturate(3) hue-rotate(10deg);
 }
 
-/* Эффект при нажатии */
 .contact-item:active {
     background: rgba(212, 175, 55, 0.2);
     transform: scale(0.95);
     border-color: #d4af37;
 }
 
-/* Небольшие "звезды" на фоне */
 .contacts-dark::before {
     content: '✦';
     position: absolute;
@@ -781,14 +741,14 @@ body {
 }
 
 /* =========================================
-   ФУТЕР (FOOTER)
+   ФУТЕР 
    ========================================= */
 
    .footer {
     padding: 40px 20px 30px;
-    background: #2b1d14; /* Тот же цвет, что и у контактов */
+    background: #2b1d14; 
     text-align: center;
-    border-top: 1px solid rgba(212, 175, 55, 0.1); /* Тонкая разделительная линия */
+    border-top: 1px solid rgba(212, 175, 55, 0.1); 
 }
 
 .footer-container {
@@ -799,17 +759,15 @@ body {
     gap: 20px;
 }
 
-/* Оговорка про условия */
 .footer-terms {
     font-family: 'Montserrat', sans-serif;
     font-size: 11px;
     line-height: 1.6;
-    color: rgba(255, 253, 231, 0.5); /* Приглушенный ванильный */
+    color: rgba(255, 253, 231, 0.5); 
     margin: 0;
     font-style: italic;
 }
 
-/* Ссылки */
 .footer-links {
     margin: 5px 0;
 }
@@ -817,7 +775,7 @@ body {
 .footer-link {
     font-family: 'Montserrat', sans-serif;
     font-size: 11px;
-    color: #d4af37; /* Золотистый акцент */
+    color: #d4af37; 
     text-decoration: none;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -829,7 +787,6 @@ body {
     opacity: 1;
 }
 
-/* Нижняя часть */
 .footer-bottom {
     margin-top: 15px;
     display: flex;
