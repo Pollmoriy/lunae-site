@@ -151,12 +151,6 @@ function removeItem(index) {
     localStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
 }
-
-function checkout() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    if(cart.length === 0) return alert("Корзина пуста");
-    alert("Заказ принят! Мы свяжемся с вами ✨");
-}
 </script>
 </body>
 </html>
