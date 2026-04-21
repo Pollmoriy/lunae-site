@@ -249,46 +249,94 @@
 
         </div>
     </section>
-
+    <div id="floating-cart" class="floating-cart" onclick="location.href='cart.html'">
+        <img src="img/cart-icon.png" alt="Корзина">
+        <span id="floating-cart-count" class="cart-badge">0</span>
+    </div>
     <script>
-        // ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ ВКЛАДОК
+        // 1. ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ ВКЛАДОК
         function openTab(tabId) {
-            // 1. Скрываем все блоки с контентом
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => {
                 content.classList.remove('active');
-                content.style.display = 'none'; // На всякий случай принудительно скрываем
+                content.style.display = 'none';
             });
         
-            // 2. Убираем класс active у всех кнопок
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
         
-            // 3. Показываем нужный блок
             const activeContent = document.getElementById(tabId);
             if (activeContent) {
                 activeContent.classList.add('active');
-                activeContent.style.display = 'block'; // Показываем выбранный
+                activeContent.style.display = 'block';
             }
         
-            // 4. Делаем нажатую кнопку активной
-            event.currentTarget.classList.add('active');
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
         }
-        
-        // Логика Бургера
+    
+        // 2. ЛОГИКА БУРГЕРА
         function toggleMenu() {
             const menu = document.getElementById("menu");
             const burger = document.getElementById("burger");
             menu.classList.toggle("active");
             burger.classList.toggle("active");
             
-            if (menu.classList.contains("active")) {
-                document.body.style.overflow = "hidden";
-            } else {
-                document.body.style.overflow = "auto";
+            document.body.style.overflow = menu.classList.contains("active") ? "hidden" : "auto";
+        }
+    
+        // 3. ОБНОВЛЕНИЕ БАДЖА КОРЗИНЫ (Исправленная версия)
+        function updateCartBadge() {
+            // Получаем данные из хранилища
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            // Считаем общее количество товаров
+            const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+    
+            // Элементы плавающей кнопки
+            const floatingCart = document.getElementById("floating-cart");
+            const floatingCount = document.getElementById("floating-cart-count");
+    
+            if (floatingCart && floatingCount) {
+                if (totalQty > 0) {
+                    floatingCount.textContent = totalQty;
+                    floatingCart.classList.add("show");
+                    // На всякий случай форсируем видимость через стили, если CSS не подтянулся
+                    floatingCart.style.display = "flex";
+                    floatingCart.style.opacity = "1";
+                    floatingCart.style.visibility = "visible";
+                    floatingCart.style.transform = "translateY(0)";
+                } else {
+                    floatingCart.classList.remove("show");
+                    floatingCart.style.display = "none";
+                    floatingCart.style.opacity = "0";
+                }
+            }
+    
+            // Элементы обычной кнопки (если есть на странице)
+            const normalCount = document.getElementById("cart-count");
+            if (normalCount) {
+                if (totalQty > 0) {
+                    normalCount.textContent = totalQty;
+                    normalCount.classList.add("visible");
+                    normalCount.style.opacity = "1";
+                } else {
+                    normalCount.classList.remove("visible");
+                    normalCount.style.opacity = "0";
+                }
             }
         }
-        </script>
+    
+        // ЗАПУСК ПРИ ЗАГРУЗКЕ
+        document.addEventListener("DOMContentLoaded", () => {
+            updateCartBadge();
+            // Дополнительный вызов через 100мс, чтобы убедиться, что DOM отрисован
+            setTimeout(updateCartBadge, 100);
+        });
+    
+        // Слушаем изменения в localStorage (на случай, если добавили товар в другой вкладке)
+        window.addEventListener('storage', updateCartBadge);
+    </script>
 
 </body>
 </html>

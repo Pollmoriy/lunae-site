@@ -322,8 +322,44 @@
             }
         };
     });
+
+    function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+
+    // 1. Обновляем бадж на плавающей кнопке
+    const floatingCart = document.getElementById("floating-cart");
+    const floatingCount = document.getElementById("floating-cart-count");
+
+    if (floatingCart && floatingCount) {
+        if (totalQty > 0) {
+            floatingCount.textContent = totalQty;
+            floatingCart.classList.add("show");
+        } else {
+            floatingCart.classList.remove("show");
+        }
+    }
+
+    // 2. Обновляем бадж внутри кнопок на странице товара (если они есть)
+    const normalCount = document.getElementById("cart-count");
+    if (normalCount) {
+        if (totalQty > 0) {
+            normalCount.textContent = totalQty;
+            normalCount.classList.add("visible");
+        } else {
+            normalCount.classList.remove("visible");
+        }
+    }
+}
+
+// Запуск при загрузке
+document.addEventListener("DOMContentLoaded", updateCartBadge);
+
 </script>
 
-
+<div id="floating-cart" class="floating-cart" onclick="location.href='cart.html'">
+    <img src="img/cart-icon.png" alt="Корзина">
+    <span id="floating-cart-count" class="cart-badge">0</span>
+</div>
 </body>
 </html>

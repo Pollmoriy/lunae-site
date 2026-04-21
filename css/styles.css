@@ -842,4 +842,55 @@ body {
 .about { animation-delay: 0.7s; }
 .care { animation-delay: 0.9s; }
 
+.floating-cart {
+    position: fixed;
+    bottom: 30px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid #d4af37; /* Твой золотистый цвет */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    
+    /* Скрыта по умолчанию (покажется через JS, если в корзине есть товар) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
 
+.floating-cart.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.floating-cart img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Настраиваем кружок внутри плавающей кнопки */
+.floating-cart .cart-badge {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    background: #3d2b1f;
+    color: white;
+    min-width: 18px;
+    height: 18px;
+    font-size: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}

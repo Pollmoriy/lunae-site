@@ -425,26 +425,43 @@ body {
 /* Базовый стиль кружка */
 .cart-badge {
     position: absolute;
-    top: -5px;            /* Отступ сверху внутри кнопки */
-    left: -3px;          /* Отступ справа внутри кнопки */
-    background: #3d2b1f; /* Цвет кружка (коричневый под стиль бренда) */
-    color: #ffffff;      /* Цвет цифры */
-    font-size: 10px;
+    /* Координаты для плавающей кнопки (подправь, если нужно) */
+    top: -5px;
+    left: -3px;
+    
+    /* ГЕОМЕТРИЯ: заставляем быть кругом */
+    width: 20px;         /* Фиксированная ширина */
+    height: 20px;        /* Фиксированная высота */
+    flex-shrink: 0;      /* ЗАПРЕЩАЕМ сжиматься внутри флекс-контейнеров */
+    aspect-ratio: 1 / 1; /* Гарантируем пропорции 1 к 1 */
+    border-radius: 50%;  /* Делаем круглым */
+    
+    /* ЦВЕТ И ШРИФТ */
+    background: #3d2b1f; 
+    color: #ffffff;
+    font-size: 11px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    min-width: 18px;
-    height: 18px;
-    border-radius: 50%;
+    
+    /* ЦЕНТРИРОВКА ТЕКСТА */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2px;
+    line-height: 1;      /* Чтобы цифра не улетала вниз/вверх */
+    padding: 0;          /* Убираем падинги, они могут сплющить круг */
     
-    /* Анимация появления */
+    /* АНИМАЦИЯ */
     opacity: 0;
     transform: scale(0);
     transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: none; /* Чтобы кружок не мешал клику по кнопке */
+    z-index: 10;
+}
+
+/* Когда бадж виден */
+.cart-badge.visible, 
+.floating-cart.show .cart-badge {
+    opacity: 1 !important;
+    transform: scale(1) !important;
 }
 
 /* Класс, который делает кружок видимым (добавляется через JS) */
@@ -496,6 +513,8 @@ body {
     border: 1.5px solid #3d2b1f;       /* коричневая обводка */
     color: #3d2b1f;
 }
+
+
 
 /* --- АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
 
@@ -550,4 +569,63 @@ body {
     to {
         transform: translateY(0);
     }
+}
+
+.floating-cart.show .cart-badge {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    visibility: visible !important;
+}
+
+.floating-cart {
+    position: fixed;
+    bottom: 30px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid #d4af37; /* Твой золотистый цвет */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    
+    /* Скрыта по умолчанию (покажется через JS, если в корзине есть товар) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+.floating-cart.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+
+.floating-cart img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Настраиваем кружок внутри плавающей кнопки */
+.floating-cart .cart-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: #3d2b1f;
+    color: white;
+    min-width: 18px;
+    height: 18px;
+    font-size: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
 }
