@@ -288,12 +288,9 @@
     
         // 3. ОБНОВЛЕНИЕ БАДЖА КОРЗИНЫ (Исправленная версия)
         function updateCartBadge() {
-            // Получаем данные из хранилища
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            // Считаем общее количество товаров
             const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
     
-            // Элементы плавающей кнопки
             const floatingCart = document.getElementById("floating-cart");
             const floatingCount = document.getElementById("floating-cart-count");
     
@@ -301,7 +298,6 @@
                 if (totalQty > 0) {
                     floatingCount.textContent = totalQty;
                     floatingCart.classList.add("show");
-                    // На всякий случай форсируем видимость через стили, если CSS не подтянулся
                     floatingCart.style.display = "flex";
                     floatingCart.style.opacity = "1";
                     floatingCart.style.visibility = "visible";
@@ -313,7 +309,6 @@
                 }
             }
     
-            // Элементы обычной кнопки (если есть на странице)
             const normalCount = document.getElementById("cart-count");
             if (normalCount) {
                 if (totalQty > 0) {
@@ -330,11 +325,9 @@
         // ЗАПУСК ПРИ ЗАГРУЗКЕ
         document.addEventListener("DOMContentLoaded", () => {
             updateCartBadge();
-            // Дополнительный вызов через 100мс, чтобы убедиться, что DOM отрисован
             setTimeout(updateCartBadge, 100);
         });
     
-        // Слушаем изменения в localStorage (на случай, если добавили товар в другой вкладке)
         window.addEventListener('storage', updateCartBadge);
     </script>
 

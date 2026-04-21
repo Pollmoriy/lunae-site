@@ -74,13 +74,11 @@
     text-decoration: none;
     color: #3d2b1f;
 
-    /* Продвинутый сброс жирности */
     font-weight: 400 !important;
     font-style: normal !important;
-    text-transform: none; /* Убирает капс, если он мешает */
+    text-transform: none; 
     letter-spacing: 0px; 
     
-    /* Техническое исправление рендеринга */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -100,9 +98,8 @@
 
 
 /* ОБЩИЕ НАСТРОЙКИ */
-/* 1. ПОДТЯГИВАЕМ КАТАЛОГ ВЫШЕ */
 body {
-    padding-top: 60px; /* Уменьшили отступ от хедера */
+    padding-top: 60px; 
     background-color: #ffffff;
 }
 
@@ -110,7 +107,6 @@ body {
 .catalog-top {
     text-align: center;
     padding: 20px 20px 10px;
-    /* ИНТЕРЕСНЫЙ ФОН: мягкий радиальный градиент */
     background: radial-gradient(circle at top, #FFFDF5 0%, #ffffff 70%);
     position: relative;
 }
@@ -130,21 +126,19 @@ body {
     opacity: 0.8;
 }
 
-/* 2. ВИЗУАЛЬНОЕ ОТДЕЛЕНИЕ КНОПОК */
 .catalog-tabs {
     display: flex;
     justify-content: center;
     gap: 5px;
     padding: 8px;
     margin: 10px 15px 25px;
-    /* Подложка для кнопок */
     background: #f8f8f8; 
     border-radius: 30px;
     border: 1px solid #f0f0f0;
 }
 
 .tab-btn {
-    flex: 1; /* Кнопки растягиваются равномерно */
+    flex: 1; 
     padding: 10px 5px;
     border: none;
     background: transparent;
@@ -158,12 +152,11 @@ body {
 }
 
 .tab-btn.active {
-    background: #ffffff; /* Активная кнопка "выпуклая" белая */
+    background: #ffffff; 
     color: #3d2b1f;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* 3. КАРТОЧКИ ТОВАРОВ С ТЕНЯМИ */
 .product-card {
     text-decoration: none;
     display: flex;
@@ -176,9 +169,8 @@ body {
     aspect-ratio: 1 / 1;
     overflow: hidden;
     border-radius: 20px;
-    /* ТЕНЬ ДЛЯ КАРТИНКИ */
     box-shadow: 0 8px 20px rgba(139, 115, 85, 0.15); 
-    margin-bottom: 8px; /* Сделали ближе к тексту */
+    margin-bottom: 8px; 
     background: #f9f9f9;
 }
 
@@ -189,12 +181,11 @@ body {
     display: block;
 }
 
-/* 4. ПОДПИСИ БЛИЖЕ */
 .product-card h3 {
     font-family: 'Playfair Display', serif;
     font-size: 15px;
     color: #3d2b1f;
-    margin: 0 0 2px 8px; /* Минимум отступа снизу */
+    margin: 0 0 2px 8px; 
     text-align: left;
 }
 
@@ -207,7 +198,6 @@ body {
     text-align: left;
 }
 
-/* Сетка (чуть подправим gap) */
 .catalog-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -215,21 +205,18 @@ body {
     padding: 0 15px 40px;
 }
 
-/* Базовое состояние для всех вкладок */
 .tab-content {
-    /* Скрываем, но оставляем в потоке для анимации */
     display: none; 
     opacity: 0;
-    transform: translateY(15px); /* Чуть опускаем вниз */
+    transform: translateY(15px); 
     transition: opacity 0.4s ease, transform 0.4s ease;
-    will-change: opacity, transform; /* Подсказка для плавной работы на мобильных */
+    will-change: opacity, transform; 
 }
 
-/* Состояние АКТИВНОЙ вкладки */
 .tab-content.active {
     display: block !important;
-    opacity: 1; /* Полностью проявляем */
-    transform: translateY(0); /* Возвращаем на место */
+    opacity: 1; 
+    transform: translateY(0); 
 }
 
 .catalog-top h1,
@@ -237,12 +224,11 @@ body {
 .catalog-tabs,
 .catalog-grid .product-card {
     opacity: 0;
-    transform: translateY(20px); /* Выплывают снизу */
-    animation: elementFadeIn 0.8s ease forwards; /* Длительность 0.8с */
+    transform: translateY(20px); 
+    animation: elementFadeIn 0.8s ease forwards; 
     will-change: opacity, transform;
 }
 
-/* Сама анимация */
 @keyframes elementFadeIn {
     to {
         opacity: 1;
@@ -250,59 +236,38 @@ body {
     }
 }
 
-/* --- ОЧЕРЕДЬ ПОЯВЛЕНИЯ (STAGGERED DELAYS) --- */
-
-/* 1. Сначала Заголовок "Каталог" (без задержки) */
 .catalog-top h1 {
     animation-delay: 0.1s;
 }
-
-/* 2. Подзаголовок "Выберите сумку..." (чуть позже) */
 .catalog-top p {
     animation-delay: 0.25s;
 }
-
-/* 3. Капсула с Табами (кнопками) */
 .catalog-tabs {
     animation-delay: 0.4s;
 }
-
-/* 4. ОЧЕРЕДЬ ДЛЯ КАРТОЧЕК ТОВАРОВ (самое вкусное) */
-
-/* Первая карточка (в левой колонке) */
 .catalog-grid .product-card:nth-child(1) {
     animation-delay: 0.55s;
 }
-
-/* Вторая карточка (в правой колонке) */
 .catalog-grid .product-card:nth-child(2) {
     animation-delay: 0.65s;
 }
-
-/* Третья карточка (следующий ряд, левая) */
 .catalog-grid .product-card:nth-child(3) {
     animation-delay: 0.75s;
 }
-
-/* Четвертая карточка (следующий ряд, правая) */
 .catalog-grid .product-card:nth-child(4) {
     animation-delay: 0.85s;
 }
-
-/* Пятая карточка... (и так далее, если их много) */
 .catalog-grid .product-card:nth-child(5) {
     animation-delay: 0.95s;
 }
-
-/* Шестая карточка... */
 .catalog-grid .product-card:nth-child(n+6) {
-    animation-delay: 1.05s; /* Все остальные появляются вместе */
+    animation-delay: 1.05s; 
 }
 
 /* --- СТРАНИЦА ТОВАРА --- */
 
 .product-page {
-    padding: 0px 20px 120px; /* Отступ сверху под хедер и снизу под кнопки */
+    padding: 0px 20px 120px; 
     max-width: 500px;
     margin: 0 auto;
     font-family: 'Montserrat', sans-serif;
@@ -368,8 +333,6 @@ body {
     accent-color: #3d2b1f;
 }
 
-/* --- ФИКСИРОВАННАЯ ПАНЕЛЬ КНОПОК --- */
-
 .bottom-bar {
     position: fixed;
     bottom: 0;
@@ -391,8 +354,6 @@ body {
     margin: 0 auto;
 }
 
-/* --- СТИЛЬ КНОПОК (OUTLINE / ПОЛУПРОЗРАЧНЫЕ) --- */
-
 .btn-square {
     height: 55px;
     border-radius: 12px;
@@ -407,69 +368,55 @@ body {
     border: 1.5px solid;
 }
 
-/* Кнопка Добавить */
 .btn-outline-primary {
     background: rgba(61, 43, 31, 0.03);
     border-color: #3d2b1f;
     color: #3d2b1f;
 }
 
-/* Кнопка Корзина */
 .cart-icon-img {
-    width: 22px;        /* Оптимальный размер для кнопки 55px */
-    height: 22px;       /* Высота должна быть такой же */
-    object-fit: contain; /* МАГИЯ: сохраняет пропорции, не дает сплющиться */
-    display: block;      /* Убирает лишние отступы снизу */
-    opacity: 0.8;        /* Можно сделать чуть бледнее, чтобы сочеталась с обводкой */
+    width: 22px;        
+    height: 22px;       
+    object-fit: contain; 
+    display: block;      
+    opacity: 0.8;       
 }
-/* Базовый стиль кружка */
+
 .cart-badge {
     position: absolute;
-    /* Координаты для плавающей кнопки (подправь, если нужно) */
     top: -5px;
     left: -3px;
-    
-    /* ГЕОМЕТРИЯ: заставляем быть кругом */
-    width: 20px;         /* Фиксированная ширина */
-    height: 20px;        /* Фиксированная высота */
-    flex-shrink: 0;      /* ЗАПРЕЩАЕМ сжиматься внутри флекс-контейнеров */
-    aspect-ratio: 1 / 1; /* Гарантируем пропорции 1 к 1 */
-    border-radius: 50%;  /* Делаем круглым */
-    
-    /* ЦВЕТ И ШРИФТ */
+    width: 20px;         
+    height: 20px;        
+    flex-shrink: 0;      
+    aspect-ratio: 1 / 1; 
+    border-radius: 50%;  
     background: #3d2b1f; 
     color: #ffffff;
     font-size: 11px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    
-    /* ЦЕНТРИРОВКА ТЕКСТА */
     display: flex;
     justify-content: center;
     align-items: center;
-    line-height: 1;      /* Чтобы цифра не улетала вниз/вверх */
-    padding: 0;          /* Убираем падинги, они могут сплющить круг */
-    
-    /* АНИМАЦИЯ */
+    line-height: 1;      
+    padding: 0;          
     opacity: 0;
     transform: scale(0);
     transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 10;
 }
 
-/* Когда бадж виден */
 .cart-badge.visible, 
 .floating-cart.show .cart-badge {
     opacity: 1 !important;
     transform: scale(1) !important;
 }
 
-/* Класс, который делает кружок видимым (добавляется через JS) */
 .cart-badge.visible {
     opacity: 1;
     transform: scale(1);
 }
-/* Настраиваем саму кнопку, чтобы иконка была точно по центру */
 .btn-outline-cart {
     background: rgba(212, 175, 55, 0.03);
     border-color: #d4af37;
@@ -509,8 +456,8 @@ body {
     max-width: 320px;
 }
 .btn-outline-primary {
-    background: rgba(61, 43, 31, 0.03); /* бледный фон */
-    border: 1.5px solid #3d2b1f;       /* коричневая обводка */
+    background: rgba(61, 43, 31, 0.03); 
+    border: 1.5px solid #3d2b1f;      
     color: #3d2b1f;
 }
 
@@ -518,7 +465,6 @@ body {
 
 /* --- АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
 
-/* Базовое состояние для элементов (они невидимы и чуть ниже) */
 .product-page img,
 .product-title,
 .product-price,
@@ -530,7 +476,6 @@ body {
     animation: fadeInUp 0.8s ease forwards;
 }
 
-/* Сама анимация */
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -538,27 +483,13 @@ body {
     }
 }
 
-/* --- ОЧЕРЕДНОСТЬ (Задержки) --- */
 
-/* Ссылка "назад" появляется первой */
 .back-nav { animation-delay: 0.1s; }
-
-/* Фото сумки */
 .product-page img { animation-delay: 0.3s; }
-
-/* Заголовок */
 .product-title { animation-delay: 0.5s; }
-
-/* Цена */
 .product-price { animation-delay: 0.6s; }
-
-/* Описание */
 .product-desc { animation-delay: 0.7s; }
-
-/* Блок опций */
 .options { animation-delay: 0.8s; }
-
-/* Нижняя панель с кнопками выезжает отдельно (снизу вверх) */
 .bottom-bar {
     transform: translateY(100%);
     animation: slideUpBar 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
@@ -570,6 +501,8 @@ body {
         transform: translateY(0);
     }
 }
+
+/* --- Корзина --- */
 
 .floating-cart.show .cart-badge {
     opacity: 1 !important;
@@ -585,7 +518,7 @@ body {
     height: 60px;
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
-    border: 1.5px solid #d4af37; /* Твой золотистый цвет */
+    border: 1.5px solid #d4af37; 
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -594,8 +527,6 @@ body {
     cursor: pointer;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
-    
-    /* Скрыта по умолчанию (покажется через JS, если в корзине есть товар) */
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
@@ -613,7 +544,6 @@ body {
     object-fit: contain;
 }
 
-/* Настраиваем кружок внутри плавающей кнопки */
 .floating-cart .cart-badge {
     position: absolute;
     top: 2px;

@@ -84,7 +84,6 @@
 </div>
 
 <script>
-// Логика цены
 const BASE_PRICE = 4500;
 function updatePrice() {
     let currentPrice = BASE_PRICE;
@@ -94,7 +93,6 @@ function updatePrice() {
     document.getElementById("basePrice").innerText = currentPrice + " ₽";
 }
 
-// Корзина
 function addToCart() {
     let finalPrice = BASE_PRICE;
     let selectedOptions = [];
@@ -105,14 +103,13 @@ function addToCart() {
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Ищем, есть ли уже такая сумка с ТАКИМИ ЖЕ опциями
     let existingProduct = cart.find(item => 
         item.name === "Moon Bag" && 
         JSON.stringify(item.options) === JSON.stringify(selectedOptions)
     );
 
     if (existingProduct) {
-        existingProduct.qty += 1; // Просто увеличиваем счетчик
+        existingProduct.qty += 1; 
     } else {
         cart.push({
             id: Date.now(),
@@ -120,7 +117,7 @@ function addToCart() {
             price: finalPrice,
             options: selectedOptions,
             img: "../img/bag1.jpg",
-            qty: 1 // Устанавливаем 1 при первом добавлении
+            qty: 1 
         });
     }
 
@@ -136,7 +133,6 @@ function updateCartBadge() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const badge = document.getElementById("cart-count");
     
-    // Считаем общее количество сумок
     const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
 
     if (badge) {
@@ -149,7 +145,6 @@ function updateCartBadge() {
     }
 }
 
-// Вызываем при загрузке страницы
 document.addEventListener("DOMContentLoaded", updateCartBadge);
 
 // Бургер-меню

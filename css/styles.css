@@ -811,9 +811,6 @@ body {
 
 /* --- ГЛАВНАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ ЭЛЕМЕНТОВ --- */
 
-/* Анимация для всей Главной страницы */
-
-/* Скрываем элементы изначально */
 .hero-content h1, 
 .hero-content p, 
 .hero-content .btn,
@@ -825,7 +822,6 @@ body {
     animation: mainPageFadeIn 1s ease forwards;
 }
 
-/* Сама анимация */
 @keyframes mainPageFadeIn {
     to {
         opacity: 1;
@@ -833,15 +829,16 @@ body {
     }
 }
 
-/* Очередь появления на Главной */
 .hero-content h1 { animation-delay: 0.1s; }
 .hero-content p { animation-delay: 0.3s; }
 .hero-content .btn { animation-delay: 0.5s; }
-
-/* Блоки ниже (появятся чуть позже, создавая эффект скролла) */
 .about { animation-delay: 0.7s; }
 .care { animation-delay: 0.9s; }
 
+
+/* =========================================
+   Корзинка
+   ========================================= */
 .floating-cart {
     position: fixed;
     bottom: 30px;
@@ -850,7 +847,7 @@ body {
     height: 60px;
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
-    border: 1.5px solid #d4af37; /* Твой золотистый цвет */
+    border: 1.5px solid #d4af37; 
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -859,8 +856,6 @@ body {
     cursor: pointer;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
-    
-    /* Скрыта по умолчанию (покажется через JS, если в корзине есть товар) */
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
@@ -878,7 +873,6 @@ body {
     object-fit: contain;
 }
 
-/* Настраиваем кружок внутри плавающей кнопки */
 .floating-cart .cart-badge {
     position: absolute;
     top: 1px;
