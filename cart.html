@@ -49,7 +49,7 @@
 </section>
 
 <script>
-function toggleMenu() {
+    function toggleMenu() {
     const menu = document.getElementById("menu");
     const burger = document.getElementById("burger");
     menu.classList.toggle("active");
@@ -58,11 +58,8 @@ function toggleMenu() {
 }
 
 window.onload = function() {
-    // 1. Добавляем класс анимации при загрузке
     document.body.classList.add("is-loading");
     renderCart();
-
-    // 2. Убираем класс через 1.2 секунды, чтобы при кликах анимация не повторялась
     setTimeout(() => {
         document.body.classList.remove("is-loading");
     }, 1200);
@@ -97,15 +94,15 @@ function renderCart() {
             row.style.transform = "translateY(0)";
         }
 
-        // --- ШАГ 1: ГОТОВИМ HTML ДЛЯ ОПЦИЙ ---
+        // --- ВОТ ЭТОТ БЛОК ТЫ ПОСТОЯННО ТЕРЯЕШЬ ---
         let optionsHtml = "";
         if (item.options && item.options.length > 0) {
             optionsHtml = `<div class="cart-item-options">` + 
                 item.options.map(opt => `<span>+ ${opt}</span>`).join('') + 
             `</div>`;
         }
+        // ------------------------------------------
 
-        // --- ШАГ 2: ВСТАВЛЯЕМ ${optionsHtml} В НУЖНОЕ МЕСТО ---
         row.innerHTML = `
             <img src="${item.img}" class="cart-item-img">
             <div class="cart-item-info">
@@ -148,7 +145,6 @@ function checkout() {
     if(cart.length === 0) return alert("Корзина пуста");
     alert("Заказ принят! Мы свяжемся с вами ✨");
 }
-
 </script>
 </body>
 </html>
