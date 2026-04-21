@@ -461,7 +461,11 @@ body {
     width: 80%;
     max-width: 320px;
 }
-
+.btn-outline-primary {
+    background: rgba(61, 43, 31, 0.03); /* бледный фон */
+    border: 1.5px solid #3d2b1f;       /* коричневая обводка */
+    color: #3d2b1f;
+}
 
 /* --- АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
 
