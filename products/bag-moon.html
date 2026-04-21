@@ -67,8 +67,9 @@
     <div class="bottom-bar">
         <div class="product-actions">
             <button onclick="addToCart()" class="btn-square btn-outline-primary">Добавить в корзину</button>
-            <button onclick="goCart()" class="btn-square btn-outline-cart">
+            <button onclick="goCart()" class="btn-square btn-outline-cart" style="position: relative;">
                 <img src="../img/cart-icon.png" alt="Корзина" class="cart-icon-img">
+                <span id="cart-count" class="cart-badge">0</span>
             </button>
         </div>
     </div>
@@ -125,10 +126,31 @@ function addToCart() {
 
     localStorage.setItem("cart", JSON.stringify(cart));
     document.getElementById("popup").classList.remove("hidden");
+    updateCartBadge();
 }
 
 function closePopup() { document.getElementById("popup").classList.add("hidden"); }
 function goCart() { window.location.href = "../cart.html"; }
+
+function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const badge = document.getElementById("cart-count");
+    
+    // Считаем общее количество сумок
+    const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+
+    if (badge) {
+        if (totalQty > 0) {
+            badge.textContent = totalQty;
+            badge.classList.add("visible");
+        } else {
+            badge.classList.remove("visible");
+        }
+    }
+}
+
+// Вызываем при загрузке страницы
+document.addEventListener("DOMContentLoaded", updateCartBadge);
 
 // Бургер-меню
 function toggleMenu() {

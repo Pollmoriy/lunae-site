@@ -422,15 +422,45 @@ body {
     display: block;      /* Убирает лишние отступы снизу */
     opacity: 0.8;        /* Можно сделать чуть бледнее, чтобы сочеталась с обводкой */
 }
+/* Базовый стиль кружка */
+.cart-badge {
+    position: absolute;
+    top: -5px;            /* Отступ сверху внутри кнопки */
+    left: -3px;          /* Отступ справа внутри кнопки */
+    background: #3d2b1f; /* Цвет кружка (коричневый под стиль бренда) */
+    color: #ffffff;      /* Цвет цифры */
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    
+    /* Анимация появления */
+    opacity: 0;
+    transform: scale(0);
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none; /* Чтобы кружок не мешал клику по кнопке */
+}
 
+/* Класс, который делает кружок видимым (добавляется через JS) */
+.cart-badge.visible {
+    opacity: 1;
+    transform: scale(1);
+}
 /* Настраиваем саму кнопку, чтобы иконка была точно по центру */
 .btn-outline-cart {
     background: rgba(212, 175, 55, 0.03);
     border-color: #d4af37;
-    padding-top: 20px;         /* Убираем внутренние отступы, чтобы центрирование было точным */
+    padding-top: 20px;         
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 .btn-outline-secondary {
     background: transparent;
