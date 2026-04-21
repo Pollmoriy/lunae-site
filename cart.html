@@ -76,7 +76,6 @@ function renderCart() {
     container.innerHTML = "";
     let total = 0;
 
-    // ВЕРНУЛИ НАДПИСЬ ПРИ ПУСТОЙ КОРЗИНЕ
     if (cart.length === 0) {
         container.innerHTML = `<div class="empty-cart-msg">Ваша корзина пока пуста 🌙</div>`;
         totalElem.textContent = "0 ₽";
@@ -90,20 +89,29 @@ function renderCart() {
         const row = document.createElement("div");
         row.classList.add("cart-item");
 
-        // Применяем задержку только при первой загрузке
         if (document.body.classList.contains("is-loading")) {
             row.style.animationDelay = `${0.3 + (index * 0.1)}s`;
         } else {
-            row.style.animation = "none"; // Убираем анимацию при кликах
+            row.style.animation = "none";
             row.style.opacity = "1";
             row.style.transform = "translateY(0)";
         }
 
+        // --- ШАГ 1: ГОТОВИМ HTML ДЛЯ ОПЦИЙ ---
+        let optionsHtml = "";
+        if (item.options && item.options.length > 0) {
+            optionsHtml = `<div class="cart-item-options">` + 
+                item.options.map(opt => `<span>+ ${opt}</span>`).join('') + 
+            `</div>`;
+        }
+
+        // --- ШАГ 2: ВСТАВЛЯЕМ ${optionsHtml} В НУЖНОЕ МЕСТО ---
         row.innerHTML = `
             <img src="${item.img}" class="cart-item-img">
             <div class="cart-item-info">
                 <span class="cart-item-name">${item.name}</span>
-                <div class="cart-item-controls">
+                
+                ${optionsHtml} <div class="cart-item-controls">
                     <div class="qty-controls">
                         <button onclick="changeQty(${index}, -1)">-</button>
                         <span class="qty">${quantity}</span>

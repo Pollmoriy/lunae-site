@@ -56,7 +56,7 @@
         Подарочная упаковка бесплатно 🎁
     </div>
 
-    <div class="options">
+    <div class="options" id="productOptions">
         <b>Дополнительные опции:</b><br><br>
         <label><input type="checkbox" class="option-check" value="500" onchange="updatePrice()"> Вязаный брелок-цветок (+500 ₽)</label>
         <label><input type="checkbox" class="option-check" value="500" onchange="updatePrice()"> Декоративная цепочка (+500 ₽)</label>
@@ -84,6 +84,7 @@
 
 <script>
 const BASE_PRICE = 4500;
+
 function updatePrice() {
     let currentPrice = BASE_PRICE;
     document.querySelectorAll(".option-check:checked").forEach(el => {
@@ -92,46 +93,66 @@ function updatePrice() {
     document.getElementById("basePrice").innerText = currentPrice + " ₽";
 }
 
+// ДОБАВИЛ ЭТУ ФУНКЦИЮ (ее не было в твоем коде)
+function showPopup() {
+    document.getElementById("popup").classList.remove("hidden");
+}
+
+function closePopup() { 
+    document.getElementById("popup").classList.add("hidden"); 
+}
+
+function goCart() { 
+    window.location.href = "cart.html"; // Убрал ../ если корзина в корне
+}
+
 function addToCart() {
+    const selectedOptions = [];
+    const checkboxes = document.querySelectorAll('.option-check:checked');
+    
     let finalPrice = BASE_PRICE;
-    let selectedOptions = [];
-    document.querySelectorAll(".option-check:checked").forEach(el => {
-        finalPrice += Number(el.value);
-        selectedOptions.push(el.parentElement.innerText.split('(')[0].trim());
+    checkboxes.forEach(cb => {
+        let rawText = cb.parentElement.textContent.trim();
+        let cleanText = rawText.split('(+')[0].trim(); 
+        selectedOptions.push(cleanText);
+        finalPrice += Number(cb.value);
     });
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const product = {
+        id: 'bag-moon', 
+        name: 'Moon Bag',
+        price: finalPrice,
+        // ВАЖНО: используем путь от корня сайта, чтобы картинка не пропадала
+        img: '/lunae-site/img/bag1.jpg', 
+        options: selectedOptions, 
+        qty: 1
+    };
 
-    let existingProduct = cart.find(item => 
-        item.name === "Moon Bag" && 
-        JSON.stringify(item.options) === JSON.stringify(selectedOptions)
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    const existingProduct = cart.find(item => 
+        item.id === product.id && 
+        JSON.stringify(item.options) === JSON.stringify(product.options)
     );
 
     if (existingProduct) {
-        existingProduct.qty += 1; 
+        existingProduct.qty++;
     } else {
-        cart.push({
-            id: Date.now(),
-            name: "Moon Bag",
-            price: finalPrice,
-            options: selectedOptions,
-            img: "/lunae-site/img/bag1.jpg",
-            qty: 1 
-        });
+        cart.push(product);
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    document.getElementById("popup").classList.remove("hidden");
-    updateCartBadge();
+    
+    // ПРОВЕРКА: Если ты видишь эту таблицу и в ней есть options — значит JS на этой странице СРАБОТАЛ
+    console.table(JSON.parse(localStorage.getItem("cart")));
+    
+    updateCartBadge(); 
+    showPopup(); 
 }
-
-function closePopup() { document.getElementById("popup").classList.add("hidden"); }
-function goCart() { window.location.href = "../cart.html"; }
 
 function updateCartBadge() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const badge = document.getElementById("cart-count");
-    
     const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
 
     if (badge) {
@@ -146,21 +167,13 @@ function updateCartBadge() {
 
 document.addEventListener("DOMContentLoaded", updateCartBadge);
 
-// Бургер-меню
 function toggleMenu() {
     const menu = document.getElementById("menu");
     const burger = document.getElementById("burger");
-    
     menu.classList.toggle("active");
     burger.classList.toggle("active");
-
-    if (menu.classList.contains("active")) {
-        document.body.style.overflow = "hidden";
-    } else {
-        document.body.style.overflow = "auto";
-    }
-}
-    
+    document.body.style.overflow = menu.classList.contains("active") ? "hidden" : "auto";
+} 
 </script>
 
 </body>

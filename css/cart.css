@@ -203,3 +203,28 @@
 .cart-buttons a.btn-square {
     text-decoration: none;
 }
+
+
+/* Убедимся, что инфо-блок не обрезает текст */
+.cart-item-info {
+    overflow: visible !important;
+    height: auto !important;
+}
+
+/* Гарантируем видимость блока опций */
+.cart-item-options {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+    margin: 5px 0 !important;
+    padding-left: 8px !important;
+    border-left: 1.5px solid #d4af37 !important;
+    min-height: 10px !important; /* Чтобы блок не схлопывался */
+}
+
+.cart-item-options span {
+    color: #8b7355 !important; /* Убедись, что цвет не белый! */
+    font-size: 11px !important;
+    display: block !important;
+    font-style: italic !important;
+}
