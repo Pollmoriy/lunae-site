@@ -841,3 +841,84 @@ body {
 /* Блоки ниже (появятся чуть позже, создавая эффект скролла) */
 .about { animation-delay: 0.7s; }
 .care { animation-delay: 0.9s; }
+
+
+
+
+
+.shop-header {
+    display:flex;
+    justify-content:space-between;
+    padding:20px;
+    font-family:Montserrat;
+}
+
+.product-page {
+    padding:20px;
+    max-width:500px;
+    margin:auto;
+    font-family:Montserrat;
+}
+
+.product-img {
+    width:100%;
+    border-radius:20px;
+}
+
+.product-title {
+    font-size:28px;
+    margin-top:15px;
+}
+
+.product-price {
+    font-size:22px;
+    margin:10px 0 20px;
+}
+
+.product-desc {
+    line-height:1.6;
+}
+
+.options {
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.product-buttons {
+    margin-top:30px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.btn {
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.primary { background:black; color:white; }
+.secondary { background:#eee; }
+.cart { background:#ffd84d; }
+
+.popup {
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.popup-content {
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.hidden { display:none; }
