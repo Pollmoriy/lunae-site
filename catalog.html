@@ -209,12 +209,12 @@
     <section id="models" class="tab-content">
         <div class="catalog-grid">
             
-            <a href="products/product-moon-bag.html" class="product-card">
+            <a href="products/bag-moon.html" class="product-card">
                 <div class="product-img-wrap">
-                    <img src="img/model1.jpg" alt="Cloud Model">
+                    <img src="img/bag1.jpg" alt="Moon Bag">
                 </div>
-                <h3>Cloud Model</h3>
-                <p class="price">от 6 000 ₽</p>
+                <h3>Moon Bag</h3>
+                <p class="price">4 500 ₽</p>
             </a>
 
             <a href="products/model-classic.html" class="product-card">
@@ -251,62 +251,29 @@
     </section>
 
     <script>
-       // Основная функция переключения
-function openTab(tabId) {
-    // Скрываем все вкладки
-    const tabs = document.querySelectorAll('.tab-content');
-    tabs.forEach(tab => {
-        tab.classList.remove('active');
-        tab.style.display = 'none';
-    });
-
-    // Убираем активный класс у всех кнопок
-    const buttons = document.querySelectorAll('.tab-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
-
-    // Показываем нужную вкладку
-    const activeTab = document.getElementById(tabId);
-    if (activeTab) {
-        activeTab.style.display = 'block';
-        setTimeout(() => activeTab.classList.add('active'), 10);
-    }
-
-    // ПОДСВЕТКА КНОПКИ: ищем кнопку, которая управляет этим tabId
-    const targetBtn = document.querySelector(`.tab-btn[onclick*="${tabId}"]`);
-    if (targetBtn) {
-        targetBtn.classList.add('active');
+     function toggleMenu() {
+    const menu = document.getElementById("menu");
+    const burger = document.getElementById("burger");
+    
+    menu.classList.toggle("active");
+    burger.classList.toggle("active");
+    
+    // Блокируем скролл страницы при открытом меню
+    if (menu.classList.contains("active")) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "auto";
     }
 }
 
-// Слушатель полной загрузки страницы
-window.addEventListener('load', function() {
-    // Проверяем, есть ли хэш в адресе (например, #models)
-    const hash = window.location.hash.replace('#', '');
-    
-    if (hash && document.getElementById(hash)) {
-        // Если есть хэш и такой ID существует — открываем его
-        openTab(hash);
-        
-        // Скроллим к табам через полсекунды
-        setTimeout(() => {
-            const tabsContainer = document.querySelector('.catalog-tabs');
-            if (tabsContainer) {
-                tabsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }, 500);
-    } else {
-        // Если хэша нет — открываем первую вкладку по умолчанию
-        openTab('available');
-    }
-});
-
-// Твой старый код для бургер-меню (оставь его ниже)
-function toggleMenu() {
-    const menu = document.getElementById("menu");
-    const burger = document.getElementById("burger");
-    menu.classList.toggle("active");
-    burger.classList.toggle("active");
-    document.body.style.overflow = menu.classList.contains("active") ? "hidden" : "auto";
+// Обновление цены
+function updatePrice() {
+    const BASE_PRICE = 4500;
+    let currentPrice = BASE_PRICE;
+    document.querySelectorAll(".option-check:checked").forEach(el => {
+        currentPrice += Number(el.value);
+    });
+    document.getElementById("basePrice").innerText = currentPrice + " ₽";
 }
     </script>
 

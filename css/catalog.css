@@ -289,3 +289,166 @@ body {
 .catalog-grid .product-card:nth-child(n+6) {
     animation-delay: 1.05s; /* Все остальные появляются вместе */
 }
+
+/* --- СТРАНИЦА ТОВАРА --- */
+
+.product-page {
+    padding: 0px 20px 120px; /* Отступ сверху под хедер и снизу под кнопки */
+    max-width: 500px;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.back-nav {
+    display: inline-block;
+    margin: 10px 0 20px;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #8b7355;
+    letter-spacing: 1px;
+}
+
+.product-page img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.product-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #3d2b1f;
+}
+
+.product-price {
+    font-size: 22px;
+    font-weight: 700;
+    color: #d4af37;
+    margin-bottom: 20px;
+}
+
+.product-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.options {
+    background: #fcfcfc;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    margin-bottom: 5px;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.options input[type="checkbox"] {
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    accent-color: #3d2b1f;
+}
+
+/* --- ФИКСИРОВАННАЯ ПАНЕЛЬ КНОПОК --- */
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 15px 20px 30px;
+    box-sizing: border-box;
+    z-index: 1000;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.product-actions {
+    display: grid;
+    grid-template-columns: 1fr 60px;
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* --- СТИЛЬ КНОПОК (OUTLINE / ПОЛУПРОЗРАЧНЫЕ) --- */
+
+.btn-square {
+    height: 55px;
+    border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+    border: 1.5px solid;
+}
+
+/* Кнопка Добавить */
+.btn-outline-primary {
+    background: rgba(61, 43, 31, 0.03);
+    border-color: #3d2b1f;
+    color: #3d2b1f;
+}
+
+/* Кнопка Корзина */
+.cart-icon-img {
+    width: 22px;        /* Оптимальный размер для кнопки 55px */
+    height: 22px;       /* Высота должна быть такой же */
+    object-fit: contain; /* МАГИЯ: сохраняет пропорции, не дает сплющиться */
+    display: block;      /* Убирает лишние отступы снизу */
+    opacity: 0.8;        /* Можно сделать чуть бледнее, чтобы сочеталась с обводкой */
+}
+
+/* Настраиваем саму кнопку, чтобы иконка была точно по центру */
+.btn-outline-cart {
+    background: rgba(212, 175, 55, 0.03);
+    border-color: #d4af37;
+    padding-top: 20px;         /* Убираем внутренние отступы, чтобы центрирование было точным */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-outline-secondary {
+    background: transparent;
+    border-color: #ddd;
+    color: #888;
+}
+
+.btn-square:active {
+    transform: scale(0.97);
+    background: rgba(0,0,0,0.05);
+}
+
+/* --- POPUP --- */
+.popup {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+}
+.popup.hidden { display: none; }
+.popup-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    width: 80%;
+    max-width: 320px;
+}
