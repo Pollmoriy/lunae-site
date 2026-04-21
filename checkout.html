@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление заказа | LUNAE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/catalog.css"> <link rel="stylesheet" href="css/cart.css">  
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo" onclick="location.href='index.html'">LUNAE 🌙</div>
+        <div class="burger" id="burger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+    
+    <nav id="menu" class="menu">
+        <div class="menu-content">
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="index.html#custom">На заказ</a>
+            <a href="index.html#reviews">Отзывы</a>
+            <a href="index.html#care">Уход</a>
+            <a href="index.html#contacts">Контакты</a>
+        </div>
+    </nav>
+
+<div class="checkout-container">
+    <div class="checkout-header">
+        <h1>Оформление</h1>
+    </div>
+
+    <div class="notice-box">
+        <b>Обратите внимание!</b>
+        <p>После заполнения анкеты мы оперативно свяжемся с вами для уточнения деталей.</p>
+    </div>
+
+    <form class="order-form" id="checkoutForm">
+        <div class="field-group">
+            <label>Ник в Telegram (@)</label>
+            <input type="text" id="tg" placeholder="@username" required>
+        </div>
+    
+        <div class="field-group">
+            <label>ФИО получателя</label>
+            <input type="text" id="fio" placeholder="Иванова Анна" required>
+        </div>
+    
+        <div class="field-group">
+            <label>Номер телефона</label>
+            <div class="phone-row">
+                <select id="code">
+                    <option value="+375">🇧🇾 +375</option>
+                    <option value="+7">🇷🇺 +7</option>
+                    <option value="+380">🇺🇦 +380</option>
+                </select>
+                <input type="tel" id="phone" placeholder="29 123 45 67" required>
+            </div>
+        </div>
+    
+        <div class="field-group">
+            <label>Электронная почта</label>
+            <input type="email" id="email" placeholder="example@mail.com" required>
+        </div>
+    
+        <div class="field-group">
+            <label>Полный адрес доставки</label>
+            <input type="text" id="address" placeholder="Город, улица, дом, кв, индекс" required>
+        </div>
+    
+        <div class="field-group">
+            <label>Служба доставки</label>
+            <select id="delivery" required>
+                <option value="">Выберите вариант</option>
+                <option value="Белпочта">Белпочта</option>
+                <option value="СДЭК">СДЭК</option>
+                <option value="Европочта">Европочта</option>
+            </select>
+        </div>
+    
+        <div class="field-group">
+            <label>Способ оплаты</label>
+            <select id="payment" required>
+                <option value="">Выберите способ...</option>
+                <option value="Карта">Картой онлайн (через менеджера)</option>
+                <option value="Перевод">Перевод на карту</option>
+                <option value="Наложенный">Наложенный платёж (Белпочта/Европочта)</option>
+            </select>
+        </div>
+    
+        <div class="field-group">
+            <label>Комментарий</label>
+            <textarea id="msg" rows="2" placeholder="Особые пожелания..."></textarea>
+        </div>
+    
+        <div class="policy-row">
+            <input type="checkbox" id="check" required>
+            <label for="check">Я соглашаюсь с <a href="policy.html" class="policy-link">политикой конфиденциальности</a></label>
+        </div>
+    
+        <div class="actions-row">
+            <a href="catalog.html" class="btn-lunae btn-back">В каталог</a>
+            <button type="submit" class="btn-lunae btn-confirm">Подтвердить</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(email)) {
+            alert("Пожалуйста, введите корректный email");
+            return;
+        }
+
+        if (phone.length < 7) {
+            alert("Пожалуйста, введите корректный номер телефона");
+            return;
+        }
+        
+        alert("Заявка принята! Мы скоро напишем вам в Telegram ✨");
+        localStorage.removeItem('cart');
+        window.location.href = 'index.html';
+    });
+</script>
+
+</body>
+</html>

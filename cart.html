@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Корзина | LUNAE</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/catalog.css"> <link rel="stylesheet" href="css/cart.css">    </head>
+    <link rel="stylesheet" href="css/catalog.css"> <link rel="stylesheet" href="css/cart.css">    
+</head>
 <body class="cart-body">
 
 <header class="header">
@@ -55,6 +56,17 @@
     menu.classList.toggle("active");
     burger.classList.toggle("active");
     document.body.style.overflow = menu.classList.contains("active") ? "hidden" : "auto";
+}
+
+function checkout() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    if (cart.length === 0) {
+        alert("Ваша корзина пуста 🌙");
+        return;
+    }
+
+    window.location.href = "checkout.html";
 }
 
 window.onload = function() {
