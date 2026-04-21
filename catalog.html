@@ -251,31 +251,44 @@
     </section>
 
     <script>
-     function toggleMenu() {
-    const menu = document.getElementById("menu");
-    const burger = document.getElementById("burger");
-    
-    menu.classList.toggle("active");
-    burger.classList.toggle("active");
-    
-    // Блокируем скролл страницы при открытом меню
-    if (menu.classList.contains("active")) {
-        document.body.style.overflow = "hidden";
-    } else {
-        document.body.style.overflow = "auto";
-    }
-}
-
-// Обновление цены
-function updatePrice() {
-    const BASE_PRICE = 4500;
-    let currentPrice = BASE_PRICE;
-    document.querySelectorAll(".option-check:checked").forEach(el => {
-        currentPrice += Number(el.value);
-    });
-    document.getElementById("basePrice").innerText = currentPrice + " ₽";
-}
-    </script>
+        // ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ ВКЛАДОК
+        function openTab(tabId) {
+            // 1. Скрываем все блоки с контентом
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+                content.style.display = 'none'; // На всякий случай принудительно скрываем
+            });
+        
+            // 2. Убираем класс active у всех кнопок
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+        
+            // 3. Показываем нужный блок
+            const activeContent = document.getElementById(tabId);
+            if (activeContent) {
+                activeContent.classList.add('active');
+                activeContent.style.display = 'block'; // Показываем выбранный
+            }
+        
+            // 4. Делаем нажатую кнопку активной
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Логика Бургера
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            const burger = document.getElementById("burger");
+            menu.classList.toggle("active");
+            burger.classList.toggle("active");
+            
+            if (menu.classList.contains("active")) {
+                document.body.style.overflow = "hidden";
+            } else {
+                document.body.style.overflow = "auto";
+            }
+        }
+        </script>
 
 </body>
 </html>
