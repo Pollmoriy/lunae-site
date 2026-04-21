@@ -1,0 +1,215 @@
+/* ФОН СТРАНИЦЫ С МЯГКИМ ГРАДИЕНТОМ */
+.cart-body {
+    background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+    min-height: 100vh;
+    margin: 0;
+}
+
+.cart-page {
+    padding: 100px 20px 50px;
+    max-width: 500px;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.cart-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cart-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: #3d2b1f;
+    margin-bottom: 8px;
+}
+
+.cart-header p {
+    font-size: 13px;
+    color: #8b7355;
+    line-height: 1.4;
+}
+
+/* КАРТОЧКА ТОВАРА */
+.cart-item {
+    display: flex;
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(139, 115, 85, 0.1);
+    position: relative; /* Чтобы крестик прилип к углу */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.cart-item-img {
+    width: 85px;
+    height: 85px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    min-height: 85px; /* Чтобы высота текста совпадала с фото */
+}
+
+.cart-item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: #3d2b1f;
+    margin-bottom: 10px;
+    padding-right: 25px; /* Отступ под крестик */
+    display: block;
+}
+
+/* КОНТРОЛЛЕРЫ (СЧЕТЧИК И ЦЕНА) */
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Счетчик слева, цена справа */
+    width: 100%;
+}
+
+.qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    padding: 4px 10px;
+    border-radius: 25px;
+    border: 1px solid #f0f0f0;
+}
+
+.qty-controls button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #3d2b1f;
+    padding: 0 5px;
+}
+
+.qty-controls span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.cart-item-price {
+    font-weight: 700;
+    color: #d4af37;
+    font-size: 15px;
+}
+
+/* КНОПКА УДАЛЕНИЯ (КРЕСТИК) */
+.remove-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #d1d1d1;
+    line-height: 1;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.remove-btn:hover {
+    color: #3d2b1f;
+}
+
+/* ИТОГО И КНОПКИ */
+.cart-footer {
+    margin-top: 30px;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 5px;
+    border-top: 1px dashed #d1bfa7;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #3d2b1f;
+}
+
+.cart-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Переиспользование твоих кнопок */
+.active-btn {
+    background: #3d2b1f !important;
+    color: #fff !important;
+}
+
+/* Убираем подчеркивание у кнопки "В каталог" */
+.cart-buttons a.btn-square {
+    text-decoration: none;
+}
+
+/* Ссылка на Instagram: делаем коричневой и убираем подчеркивание */
+.cart-header p a {
+    color: #3d2b1f; /* Твой фирменный коричневый */
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(61, 43, 31, 0.2); /* Тонкая линия вместо грубого подчеркивания */
+    transition: 0.3s;
+}
+
+.cart-header p a:hover {
+    border-bottom: 1px solid rgba(61, 43, 31, 1);
+}
+
+/* --- АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
+
+/* Элементы, которые анимируются при загрузке */
+.is-loading .cart-header h1, 
+.is-loading .cart-header p, 
+.is-loading .cart-item, 
+.is-loading .cart-footer {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.7s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Задержки для плавности */
+.is-loading .cart-header h1 { animation-delay: 0.1s; }
+.is-loading .cart-header p { animation-delay: 0.2s; }
+.is-loading .cart-footer { animation-delay: 0.5s; }
+
+/* Стиль сообщения о пустой корзине */
+.empty-cart-msg {
+    text-align: center;
+    padding: 60px 0;
+    font-size: 16px;
+    color: #8b7355;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Убираем подчеркивание и красим Instagram */
+.cart-header p a {
+    color: #3d2b1f;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.cart-buttons a.btn-square {
+    text-decoration: none;
+}

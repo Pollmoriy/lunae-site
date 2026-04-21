@@ -102,16 +102,27 @@ function addToCart() {
         selectedOptions.push(el.parentElement.innerText.split('(')[0].trim());
     });
 
-    let product = {
-        id: Date.now(),
-        name: "Moon Bag",
-        price: finalPrice,
-        options: selectedOptions,
-        img: "../img/bag1.jpg"
-    };
-
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push(product);
+
+    // Ищем, есть ли уже такая сумка с ТАКИМИ ЖЕ опциями
+    let existingProduct = cart.find(item => 
+        item.name === "Moon Bag" && 
+        JSON.stringify(item.options) === JSON.stringify(selectedOptions)
+    );
+
+    if (existingProduct) {
+        existingProduct.qty += 1; // Просто увеличиваем счетчик
+    } else {
+        cart.push({
+            id: Date.now(),
+            name: "Moon Bag",
+            price: finalPrice,
+            options: selectedOptions,
+            img: "../img/bag1.jpg",
+            qty: 1 // Устанавливаем 1 при первом добавлении
+        });
+    }
+
     localStorage.setItem("cart", JSON.stringify(cart));
     document.getElementById("popup").classList.remove("hidden");
 }

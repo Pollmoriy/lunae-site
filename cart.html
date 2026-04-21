@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина | LUNAE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/catalog.css"> <link rel="stylesheet" href="css/cart.css">    </head>
+<body class="cart-body">
+
+<header class="header">
+    <div class="logo" onclick="location.href='index.html'">LUNAE 🌙</div>
+    <div class="burger" id="burger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+</header>
+
+<nav id="menu" class="menu">
+    <div class="menu-content">
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="index.html#custom">На заказ</a>
+        <a href="index.html#reviews">Отзывы</a>
+        <a href="index.html#care">Уход</a>
+        <a href="index.html#contacts">Контакты</a>
+    </div>
+</nav>
+
+<section class="cart-page">
+    <div class="cart-header">
+        <h1>Ваша корзина</h1>
+        <p>По всем вопросам можете связываться с нами в <a href="#" target="_blank">Instagram</a></p>
+    </div>
+
+    <div class="cart-items" id="cartItems">
+        </div>
+
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Итого:</span>
+            <span id="totalPrice">0 ₽</span>
+        </div>
+
+        <div class="cart-buttons">
+            <a href="catalog.html" class="btn-square btn-outline-primary">В каталог</a>
+            <button onclick="checkout()" class="btn-square btn-outline-primary active-btn">Оформить</button>
+        </div>
+    </div>
+</section>
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById("menu");
+    const burger = document.getElementById("burger");
+    menu.classList.toggle("active");
+    burger.classList.toggle("active");
+    document.body.style.overflow = menu.classList.contains("active") ? "hidden" : "auto";
+}
+
+window.onload = function() {
+    // 1. Добавляем класс анимации при загрузке
+    document.body.classList.add("is-loading");
+    renderCart();
+
+    // 2. Убираем класс через 1.2 секунды, чтобы при кликах анимация не повторялась
+    setTimeout(() => {
+        document.body.classList.remove("is-loading");
+    }, 1200);
+};
+
+function renderCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const container = document.getElementById("cartItems");
+    const totalElem = document.getElementById("totalPrice");
+    
+    container.innerHTML = "";
+    let total = 0;
+
+    // ВЕРНУЛИ НАДПИСЬ ПРИ ПУСТОЙ КОРЗИНЕ
+    if (cart.length === 0) {
+        container.innerHTML = `<div class="empty-cart-msg">Ваша корзина пока пуста 🌙</div>`;
+        totalElem.textContent = "0 ₽";
+        return;
+    }
+
+    cart.forEach((item, index) => {
+        const quantity = item.qty || 1;
+        total += item.price * quantity;
+
+        const row = document.createElement("div");
+        row.classList.add("cart-item");
+
+        // Применяем задержку только при первой загрузке
+        if (document.body.classList.contains("is-loading")) {
+            row.style.animationDelay = `${0.3 + (index * 0.1)}s`;
+        } else {
+            row.style.animation = "none"; // Убираем анимацию при кликах
+            row.style.opacity = "1";
+            row.style.transform = "translateY(0)";
+        }
+
+        row.innerHTML = `
+            <img src="${item.img}" class="cart-item-img">
+            <div class="cart-item-info">
+                <span class="cart-item-name">${item.name}</span>
+                <div class="cart-item-controls">
+                    <div class="qty-controls">
+                        <button onclick="changeQty(${index}, -1)">-</button>
+                        <span class="qty">${quantity}</span>
+                        <button onclick="changeQty(${index}, 1)">+</button>
+                    </div>
+                    <span class="cart-item-price">${(item.price * quantity).toLocaleString()} ₽</span>
+                </div>
+            </div>
+            <button class="remove-btn" onclick="removeItem(${index})">&times;</button>
+        `;
+        container.appendChild(row);
+    });
+
+    totalElem.textContent = total.toLocaleString() + " ₽";
+}
+
+function changeQty(index, delta) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart[index].qty = (cart[index].qty || 1) + delta;
+    if (cart[index].qty < 1) return removeItem(index);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+}
+
+function removeItem(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+}
+
+function checkout() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if(cart.length === 0) return alert("Корзина пуста");
+    alert("Заказ принят! Мы свяжемся с вами ✨");
+}
+
+</script>
+</body>
+</html>
