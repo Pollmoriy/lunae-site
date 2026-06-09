@@ -137,7 +137,6 @@
     <div class="gold-divider"></div>
 </section>
 
-<!-- REVIEWS SLIDER -->
 <section id="reviews" class="reviews">
     <div class="order-header">
         <span class="wave-line"></span>
@@ -312,9 +311,7 @@
     document.querySelectorAll('.accordion').forEach(button => {
         button.onclick = function() {
             this.classList.toggle('active');
-            
             const panel = this.nextElementSibling;
-    
             if (this.classList.contains('active')) {
                 panel.style.maxHeight = panel.scrollHeight + "px";
             } else {
